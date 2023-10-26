@@ -33,6 +33,7 @@ export const educationGroupsSlice = createSlice({
       state: DataState,
       action: PayloadAction<any>,
     ) => {
+      console.log(action.payload)
       state.educationGroups = action.payload.data
       state.teachers = action.payload.teachers
     },

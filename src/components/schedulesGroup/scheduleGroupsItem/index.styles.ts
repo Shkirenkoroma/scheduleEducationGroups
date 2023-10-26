@@ -9,7 +9,9 @@ export const ScheduleGroupsContainerItemContainer = styled.div`
   border-radius: 20px;
 `;
 
-export const EducationGroupHeader = styled.header``
+export const EducationGroupHeader = styled.header`
+  margin-bottom: 20px;
+`;
 
 export const EducationGroupNameHeader = styled.div`
   height: 50px;
@@ -32,11 +34,35 @@ export const EducationGroupDescriptionHeader = styled.div`
 `;
 
 export const EducationGroupDescriptionItemHeader = styled.div`
-  border: 2px solid grey;
+  display: flex;
+  justify-content: space-between;
   width: 40%;
 `;
 
 export const EducationGroupDescriptionItemName = styled.span`
   color: #3c4b64;
   font-weight: 900;
+`;
+
+export const Table = styled.table``;
+
+export const TableBody = styled.tbody``;
+
+export const TableHead = styled.th`
+  border: 1px solid #fdfdfd;
+`;
+
+export const TableRow = styled.tr``;
+
+export const TableCeil = styled.td`
+  border: 1px solid #fdfdfd;
+  text-align: center;
+`;
+
+export const Select = styled.select`
+  text-align: center;
+`;
+
+export const SelectOption = styled.option`
+  text-align: center;
 `;

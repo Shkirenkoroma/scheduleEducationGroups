@@ -8,7 +8,7 @@ const ScheduleGroups: FC = (): JSX.Element => {
   const dispatch = useAppDispatch()
   const dataEducationGroups = useAppSelector(
     (state: any) => state.educationGroups.educationGroups,
-  )
+  );
 
   useEffect(() => {
     dispatch(getScheduleGroups())
@@ -16,11 +16,17 @@ const ScheduleGroups: FC = (): JSX.Element => {
 
   return (
     <Style.ScheduleGroupsContainer>
-      {dataEducationGroups.map((educationGroupsItem: any) => (
-        <ScheduleGroupsItem educationGroupsItem={educationGroupsItem} />
-      ))}
+      <Style.ScheduleGroupsContainerContent>
+        {dataEducationGroups.map((educationGroupsItem: any) => (
+          <ScheduleGroupsItem
+            educationGroupsItem={educationGroupsItem}
+            key={Math.random()}
+          />
+        ))}
+      </Style.ScheduleGroupsContainerContent>
+      <button style={{marginLeft:30}}>Сохранить</button>
     </Style.ScheduleGroupsContainer>
   )
-}
+};
 
-export default ScheduleGroups
+export default ScheduleGroups;
