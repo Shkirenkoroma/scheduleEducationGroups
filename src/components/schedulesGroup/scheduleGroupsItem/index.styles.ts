@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const ScheduleGroupsContainerItemContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: 500px;
   height: 400px;
@@ -28,6 +30,7 @@ export const EducationGroupTitle = styled.span`
 
 export const EducationGroupDescriptionHeader = styled.div`
   display: flex;
+  justify-content: space-around;
   flex-wrap: wrap;
   gap: 20px;
   border: 1px solid grey;

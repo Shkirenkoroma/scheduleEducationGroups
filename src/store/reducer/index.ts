@@ -38,6 +38,6 @@ export const educationGroupsSlice = createSlice({
       state.teachers = action.payload.teachers
     },
   },
-})
+});
 
 export const scheduleGroupsReducer = educationGroupsSlice.reducer;

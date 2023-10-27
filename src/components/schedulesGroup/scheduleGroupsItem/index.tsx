@@ -58,13 +58,19 @@ const ScheduleGroupsItem: FC<any> = ({ educationGroupsItem }): JSX.Element => {
               {educationGroupsItem.lecturesHours}
             </Style.TableCeil>
             <Style.TableCeil>
-              <Style.Select name="" id="">
-                {editionDataTeachers.map((el: any) => (
-                  <Style.SelectOption value="" selected>
-                    {el.name}
-                  </Style.SelectOption>
-                ))}
-              </Style.Select>
+              {+educationGroupsItem.lecturesHours ? (
+                <Style.Select name="" id="">
+                  {editionDataTeachers.map((el: any) => (
+                    <Style.SelectOption value="">{el.name}</Style.SelectOption>
+                  ))}
+                </Style.Select>
+              ) : (
+                <Style.Select name="" id="" disabled>
+                  {editionDataTeachers.map((el: any) => (
+                    <Style.SelectOption value="">{el.name}</Style.SelectOption>
+                  ))}
+                </Style.Select>
+              )}
             </Style.TableCeil>
           </Style.TableRow>
           <Style.TableRow>
@@ -73,11 +79,19 @@ const ScheduleGroupsItem: FC<any> = ({ educationGroupsItem }): JSX.Element => {
               {educationGroupsItem.laboratoryHours}
             </Style.TableCeil>
             <Style.TableCeil>
-              <Style.Select name="" id="">
-                {editionDataTeachers.map((el: any) => (
-                  <Style.SelectOption value="">{el.name}</Style.SelectOption>
-                ))}
-              </Style.Select>
+              {+educationGroupsItem.laboratoryHours ? (
+                <Style.Select name="" id="">
+                  {editionDataTeachers.map((el: any) => (
+                    <Style.SelectOption value="">{el.name}</Style.SelectOption>
+                  ))}
+                </Style.Select>
+              ) : (
+                <Style.Select name="" id="" disabled>
+                  {editionDataTeachers.map((el: any) => (
+                    <Style.SelectOption value="">{el.name}</Style.SelectOption>
+                  ))}
+                </Style.Select>
+              )}
             </Style.TableCeil>
           </Style.TableRow>
           <Style.TableRow>
@@ -107,7 +121,7 @@ const ScheduleGroupsItem: FC<any> = ({ educationGroupsItem }): JSX.Element => {
               {educationGroupsItem.seminarHours}
             </Style.TableCeil>
             <Style.TableCeil>
-              {+educationGroupsItem.practicHours ? (
+              {+educationGroupsItem.seminarHours ? (
                 <Style.Select name="" id="">
                   {editionDataTeachers.map((el: any) => (
                     <Style.SelectOption value="">{el.name}</Style.SelectOption>
@@ -122,17 +136,32 @@ const ScheduleGroupsItem: FC<any> = ({ educationGroupsItem }): JSX.Element => {
               )}
             </Style.TableCeil>
           </Style.TableRow>
-          <Style.TableRow>
-            <Style.TableCeil>Зачёт</Style.TableCeil>
-            <Style.TableCeil></Style.TableCeil>
-            <Style.TableCeil>
-              <Style.Select name="" id="">
-                {editionDataTeachers.map((el: any) => (
-                  <Style.SelectOption value="">{el.name}</Style.SelectOption>
-                ))}
-              </Style.Select>
-            </Style.TableCeil>
-          </Style.TableRow>
+          {educationGroupsItem.exam && (
+            <Style.TableRow>
+              <Style.TableCeil>Экзамен</Style.TableCeil>
+              <Style.TableCeil></Style.TableCeil>
+              <Style.TableCeil>
+                <Style.Select name="" id="">
+                  {editionDataTeachers.map((el: any) => (
+                    <Style.SelectOption value="">{el.name}</Style.SelectOption>
+                  ))}
+                </Style.Select>
+              </Style.TableCeil>
+            </Style.TableRow>
+          )}
+          {educationGroupsItem.offset && (
+            <Style.TableRow>
+              <Style.TableCeil>Зачёт</Style.TableCeil>
+              <Style.TableCeil></Style.TableCeil>
+              <Style.TableCeil>
+                <Style.Select name="" id="">
+                  {editionDataTeachers.map((el: any) => (
+                    <Style.SelectOption value="">{el.name}</Style.SelectOption>
+                  ))}
+                </Style.Select>
+              </Style.TableCeil>
+            </Style.TableRow>
+          )}
           <Style.TableRow>
             <Style.TableCeil>
               Примечание <br /> (для составления расписания)
