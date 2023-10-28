@@ -4,10 +4,10 @@ export const ScheduleGroupsContainerItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 500px;
-  height: 400px;
+  max-width: 685px;
+  height: 460px;
   margin: 20px 20px;
-  background-color: red;
+  background-color: #cdcdcd;
   border-radius: 20px;
 `;
 
@@ -69,3 +69,7 @@ export const Select = styled.select`
 export const SelectOption = styled.option`
   text-align: center;
 `;
+
+export const Input = styled.input`
+
+`
