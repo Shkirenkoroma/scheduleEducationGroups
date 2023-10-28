@@ -1,6 +1,6 @@
-import { FC } from 'react'
-import ScheduleGroups from './components/schedulesGroup'
-import * as Style from './App.styles'
+import { FC } from 'react';
+import * as Style from './App.styles';
+import ScheduleGroups from './UI/components/schedulesGroup';
 
 const App: FC = (): JSX.Element => {
   return (

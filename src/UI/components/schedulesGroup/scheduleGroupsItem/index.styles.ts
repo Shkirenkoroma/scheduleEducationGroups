@@ -71,5 +71,4 @@ export const SelectOption = styled.option`
 `;
 
 export const Input = styled.input`
-
-`
+`;

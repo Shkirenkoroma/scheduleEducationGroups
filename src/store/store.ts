@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { scheduleGroupsReducer } from './reducer';
+import { scheduleGroupsReducer } from './slice';
 
 export const store = configureStore({
   reducer: {

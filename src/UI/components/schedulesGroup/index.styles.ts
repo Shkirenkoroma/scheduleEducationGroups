@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const ScheduleGroupsContainer = styled.div`
   width: 100%;
@@ -6,7 +6,7 @@ export const ScheduleGroupsContainer = styled.div`
   min-height: 100vh;
   margin: 0 auto;
   border: 2px solid #000;
-`
+`;
 
 export const ScheduleGroupsContainerContent = styled.div`
   display: flex;
@@ -17,4 +17,4 @@ export const ScheduleGroupsContainerContent = styled.div`
   min-height: 100vh;
   margin: 0 auto;
   border: 2px solid #000;
-`
+`;

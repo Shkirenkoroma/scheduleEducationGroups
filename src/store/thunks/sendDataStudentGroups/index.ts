@@ -1,7 +1,8 @@
-import { createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+import { DataState } from 'src/store/types/types';
 
-export const sendDataStudentGroups = createAsyncThunk<any>(
+export const sendDataStudentGroups = createAsyncThunk<DataState>(
   'education/getScheduleGroups',
   async () => {
     console.log(
@@ -11,4 +12,4 @@ export const sendDataStudentGroups = createAsyncThunk<any>(
 
     return response.data
   },
-)
+);
