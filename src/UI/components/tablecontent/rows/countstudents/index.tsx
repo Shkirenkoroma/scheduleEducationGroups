@@ -10,7 +10,7 @@ interface CountStudentsProps {
 
 const CountStudents: FC<CountStudentsProps> = ({
   educationGroupsItem,
-  column
+  column,
 }): JSX.Element => {
   const [countStudentFirstGroup, setCountStudentFirstGroup] = useState<string>(
     `${Math.ceil(educationGroupsItem.studentsNumber / 2)}`,

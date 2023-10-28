@@ -1,7 +1,7 @@
-import { ChangeEvent, FC } from "react";
-import { DataGroup } from "src/store/types/types";
-import Select from "src/UI/shared/select";
-import * as Style from "./index.styles";
+import { ChangeEvent, FC } from 'react';
+import { DataGroup } from 'src/store/types/types';
+import Select from 'src/UI/shared/select';
+import * as Style from './index.styles';
 
 interface PracticProps {
   educationGroupsItem:DataGroup,
