@@ -22,7 +22,6 @@ export interface DataState {
   teachers: DataTeacher[]
 };
 
-
 export interface PropertiesStateTeachers {
   educationGroups: DataState
 };
