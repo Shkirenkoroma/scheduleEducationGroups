@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { DataGroup } from 'src/store/types/types';
+import { FaBookOpen } from 'react-icons/fa';
 import * as Style from './index.styles';
 
 interface HeaderProps {
@@ -11,7 +12,9 @@ const Header: FC<HeaderProps> = ({ educationGroupsItem }): JSX.Element => {
     <Style.EducationGroupHeader>
       <Style.EducationGroupNameHeader>
         <Style.EducationGroupTitle>
-          {educationGroupsItem.subjectName}
+          <Style.EducationTitleName>
+            <FaBookOpen /> {educationGroupsItem.subjectName}
+          </Style.EducationTitleName>
         </Style.EducationGroupTitle>
       </Style.EducationGroupNameHeader>
       <Style.EducationGroupDescriptionHeader>
@@ -42,6 +45,6 @@ const Header: FC<HeaderProps> = ({ educationGroupsItem }): JSX.Element => {
       </Style.EducationGroupDescriptionHeader>
     </Style.EducationGroupHeader>
   )
-};
+}
 
 export default Header;

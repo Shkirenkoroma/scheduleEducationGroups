@@ -7,8 +7,9 @@ export const ScheduleGroupsContainerItemContainer = styled.div`
   max-width: 685px;
   height: 460px;
   margin: 20px 20px;
-  background-color: #cdcdcd;
-  border-radius: 20px;
+  padding:15px;
+  border:3px solid #eaeaea;
+  border-radius:5px;
 `;
 
 export const TableRow = styled.tr``;

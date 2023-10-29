@@ -16,7 +16,7 @@ interface TableProps {
 };
 
 const Table: FC<TableProps> = ({ educationGroupsItem }): JSX.Element => {
-  const [column, setColumn] = useState<boolean>(false)
+  const [column, setColumn] = useState<boolean>(false);
 
   return (
     <Style.Table>

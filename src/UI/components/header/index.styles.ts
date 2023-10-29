@@ -17,12 +17,19 @@ export const EducationGroupTitle = styled.span`
   font-weight: 900;
 `;
 
+export const EducationTitleName = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`;
+
 export const EducationGroupDescriptionHeader = styled.div`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 20px;
-  border: 1px solid grey;
+  border-top: 2px solid #eaeaea;
+  border-bottom: 2px solid #eaeaea;
 `;
 
 export const EducationGroupDescriptionItemHeader = styled.div`
