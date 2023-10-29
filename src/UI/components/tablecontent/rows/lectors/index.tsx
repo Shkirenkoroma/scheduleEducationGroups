@@ -1,4 +1,4 @@
-import { FC, ChangeEventHandler, ChangeEvent, useState } from 'react';
+import { FC, ChangeEvent, useState } from 'react';
 import { useAppSelector } from 'src/hooks';
 import { dataTeachers } from 'src/store/selectors';
 import { DataGroup } from 'src/store/types/types';
@@ -24,16 +24,16 @@ const Lectors: FC<LectorsProps>= ({educationGroupsItem, column}): JSX.Element =>
     setNameLector(valueOption)
   };
 
-
   const defaultValueOption = { id: '0', name: nameForAllExam };
   const editionDataTeachers = [defaultValueOption, ...scheduleTeachers];
+  
   return (
     <Style.TableRow>
       <Style.TableCeil>Лекции</Style.TableCeil>
       <Style.TableCeil>{educationGroupsItem.lecturesHours}</Style.TableCeil>
       <Style.TableCeil>
         <Select
-          onChange={(e: ChangeEventHandler<HTMLSelectElement>) =>
+          onChange={(e: ChangeEvent<HTMLSelectElement>) =>
             setTeacher(e.target.value)
           }
           value={nameLector}

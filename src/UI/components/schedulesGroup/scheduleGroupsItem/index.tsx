@@ -13,20 +13,20 @@ interface PropsScheduleGroupItem {
 const ScheduleGroupsItem: FC<PropsScheduleGroupItem> = ({
   educationGroupsItem,
 }): JSX.Element => {
-  const scheduleTeachers = useAppSelector(dataTeachers);
   const [nameLector, setNameLector] = useState<string>('');
   const [nameLabor, setNameLabor] = useState<string>('');
   const [namerPractic, setNamePractic] = useState<string>('');
   const [namerSeminar, setNameSeminar] = useState<string>('');
   const [namerOffset, setNameOffset] = useState<string>('');
   const [namerExam, setNameExam] = useState<string>('');
-  const [nameForAllExam, setNameForAllExam] = useState<string>('Вакансия');
- 
- 
+  
+  
   const [countStudentSecondGroup, setCountStudentSecondGroup] = useState<
-    string
+  string
   >(`${Math.floor(educationGroupsItem.studentsNumber / 2)}`);
-
+  
+  const scheduleTeachers = useAppSelector(dataTeachers);
+  const [nameForAllExam, setNameForAllExam] = useState<string>('Вакансия');
   const defaultValueOption = { id: '0', name: nameForAllExam };
   const editionDataTeachers = [defaultValueOption, ...scheduleTeachers];
 

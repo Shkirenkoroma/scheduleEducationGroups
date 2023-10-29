@@ -1,4 +1,6 @@
-import { ChangeEvent, FC } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
+import { useAppSelector } from 'src/hooks';
+import { dataTeachers } from 'src/store/selectors';
 import Select from 'src/UI/shared/select';
 import * as Style from './index.styles';
 
@@ -7,6 +9,14 @@ interface OffsetProps {
 };
 
 const Offset: FC<OffsetProps> = ({ column }): JSX.Element => {
+  const scheduleTeachers = useAppSelector(dataTeachers);
+  const [nameLector, setNameLector] = useState<string>('');
+  const [nameLabor, setNameLabor] = useState<string>('');
+  const [nameForAllExam, setNameForAllExam] = useState<string>('Вакансия');
+
+  const defaultValueOption = { id: '0', name: nameForAllExam };
+  const editionDataTeachers = [defaultValueOption, ...scheduleTeachers];
+  
   return (
     <Style.TableRow>
       <Style.TableCeil>Зачёт</Style.TableCeil>
