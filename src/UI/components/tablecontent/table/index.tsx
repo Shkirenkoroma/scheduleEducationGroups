@@ -1,5 +1,6 @@
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { DataGroup } from 'src/store/types/types';
+import { useAppSelector } from 'src/hooks';
 import Lectors from '../rows/lectors';
 import Laboratory from '../rows/laboratory';
 import TableHeader from '../rows/tableheader';
@@ -13,23 +14,26 @@ import * as Style from './index.styles';
 
 interface TableProps {
   educationGroupsItem: DataGroup
+  index:number
 };
 
-const Table: FC<TableProps> = ({ educationGroupsItem }): JSX.Element => {
-  const [column, setColumn] = useState<boolean>(false);
-
+const Table: FC<TableProps> = ({ educationGroupsItem, index}): JSX.Element => {
+  const isNewColumn = useAppSelector(
+    (state) => state.educationGroups?.formData[index]?.isNewColumn,
+  )
+  
   return (
     <Style.Table>
       <Style.TableBody>
-        <TableHeader column={column} setColumn={setColumn} />
-        <Lectors educationGroupsItem={educationGroupsItem} column={column} />
-        <Laboratory educationGroupsItem={educationGroupsItem}  column={column}/>
-        <Practic educationGroupsItem={educationGroupsItem} column={column}/>
-        <Seminar educationGroupsItem={educationGroupsItem} column={column}/>
-        {educationGroupsItem.exam && <Examen column={column}/>}
-        {educationGroupsItem.offset && <Offset column={column}/>}
-        {column && <CountStudents educationGroupsItem={educationGroupsItem} column={column}/>}
-        <Notation column={column} />
+        <TableHeader  index={index} />
+        <Lectors educationGroupsItem={educationGroupsItem} index={index} />
+        <Laboratory educationGroupsItem={educationGroupsItem} index={index} />
+        <Practic educationGroupsItem={educationGroupsItem} index={index} />
+        <Seminar educationGroupsItem={educationGroupsItem} index={index}/>
+        {educationGroupsItem.exam && <Examen index={index}/>}
+        {educationGroupsItem.offset && <Offset index={index}/>}
+        {isNewColumn && <CountStudents educationGroupsItem={educationGroupsItem} index={index} />}
+        <Notation index={index}/>
       </Style.TableBody>
     </Style.Table>
   )

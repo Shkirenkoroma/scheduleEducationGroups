@@ -2,14 +2,16 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { DataState } from 'src/store/types/types';
 
-export const sendDataStudentGroups = createAsyncThunk<DataState>(
+export const sendDataStudentGroups = createAsyncThunk<DataState, any>(
   'education/getScheduleGroups',
-  async () => {
-    console.log(
-      'Данная функция на стадии доработки: необходимо переделать под метод POST',
-    )
-    const response = await axios.post('https://bgaa.by/test_result')
-
-    return response.data
+  async ( {dataFormField} ) => {
+    try {
+      const response = await axios.post('https://bgaa.by/test_result', {
+        dataFormField,
+      })
+      return response.data
+    } catch (error) {
+      console.log(`Has occured something wrong like ${error}`)
+    }
   },
 );

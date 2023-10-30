@@ -45,6 +45,6 @@ const Header: FC<HeaderProps> = ({ educationGroupsItem }): JSX.Element => {
       </Style.EducationGroupDescriptionHeader>
     </Style.EducationGroupHeader>
   )
-}
+};
 
 export default Header;

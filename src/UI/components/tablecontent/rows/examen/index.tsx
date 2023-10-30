@@ -1,44 +1,68 @@
 import { ChangeEvent, FC, useState } from 'react';
-import { useAppSelector } from 'src/hooks';
+import { useAppDispatch, useAppSelector } from 'src/hooks';
 import { dataTeachers } from 'src/store/selectors';
+import { readValue } from 'src/store/slice';
 import Select from 'src/UI/shared/select';
 import * as Style from './index.styles';
 
 interface ExamenProps {
-  column:boolean
+  index: number
 };
 
-const Examen:FC<ExamenProps> = ({column}):JSX.Element => {
-  const scheduleTeachers = useAppSelector(dataTeachers);
-  const [nameLector, setNameLector] = useState<string>('');
-  const [nameLabor, setNameLabor] = useState<string>('');
-  const [nameForAllExam, setNameForAllExam] = useState<string>('Вакансия');
+const Examen: FC<ExamenProps> = ({ index }): JSX.Element => {
+  const nameForAllEducation = useAppSelector(
+    (state) =>
+      state.educationGroups?.formData[index].firstColumn.nameForAll.value,
+  )
+  const isNewColumn = useAppSelector(
+    (state) => state.educationGroups?.formData[index]?.isNewColumn,
+  )
 
-  const defaultValueOption = { id: '0', name: nameForAllExam };
-  const editionDataTeachers = [defaultValueOption, ...scheduleTeachers];
-  
+  const scheduleTeachers = useAppSelector(dataTeachers)
+  const dispatch = useAppDispatch()
+  const [nameForAllExam, setNameForAllExam] = useState<string>('Вакансия')
+
+  const defaultValueOption = { id: '0', name: nameForAllExam }
+  const editionDataTeachers = [defaultValueOption, ...scheduleTeachers]
+
   return (
     <Style.TableRow>
       <Style.TableCeil>Экзамен</Style.TableCeil>
       <Style.TableCeil></Style.TableCeil>
       <Style.TableCeil>
         <Select
+        nameForAllEducation={nameForAllEducation}
           onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-            setNameLabor(e.target.value)
+            dispatch(
+              readValue({
+                value: e.target.value,
+                key: 'exam',
+                index: index,
+                numberColumn: 'firstColumn',
+              }),
+            )
           }
           editionDataTeachers={editionDataTeachers}
-          value={nameLector}
           educationHours="1"
+          index={index}
         />
       </Style.TableCeil>
-      {column && (
+      {isNewColumn && (
         <Style.TableCeil>
           <Select
+          nameForAllEducation={nameForAllEducation}
+            index={index}
             onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-              setNameLabor(e.target.value)
+              dispatch(
+                readValue({
+                  value: e.target.value,
+                  key: 'exam',
+                  index: index,
+                  numberColumn: 'secondColumn',
+                }),
+              )
             }
             editionDataTeachers={editionDataTeachers}
-            value={nameLector}
             educationHours="1"
           />
         </Style.TableCeil>
@@ -47,4 +71,4 @@ const Examen:FC<ExamenProps> = ({column}):JSX.Element => {
   )
 }
 
-export default Examen;
+export default Examen

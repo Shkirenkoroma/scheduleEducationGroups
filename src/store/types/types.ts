@@ -20,10 +20,7 @@ export interface DataTeacher {
 export interface DataState {
   data: DataGroup[]
   teachers: DataTeacher[]
-};
-
-export interface PropertiesStateTeachers {
-  educationGroups: DataState
+  formData:any
 };
 
 export interface PropertiesStateEducationGroup {

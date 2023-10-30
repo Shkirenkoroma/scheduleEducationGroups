@@ -1,17 +1,25 @@
-import { ChangeEvent, FC, useState } from 'react';
+import { ChangeEvent, FC, useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from 'src/hooks';
+import { countStudentGroups } from 'src/store/slice';
 import { DataGroup } from 'src/store/types/types';
 import { Input } from 'src/UI/shared/input';
 import * as Style from './index.styles';
 
 interface CountStudentsProps {
-  educationGroupsItem: DataGroup,
-  column:boolean
+  educationGroupsItem: DataGroup
+  index: number
 };
 
 const CountStudents: FC<CountStudentsProps> = ({
   educationGroupsItem,
-  column,
+  index,
 }): JSX.Element => {
+
+  const isNewColumn = useAppSelector(
+    (state) => state.educationGroups?.formData[index]?.isNewColumn,
+  );
+
+  const dispatch = useAppDispatch()
   const [countStudentFirstGroup, setCountStudentFirstGroup] = useState<string>(
     `${Math.ceil(educationGroupsItem.studentsNumber / 2)}`,
   );
@@ -19,13 +27,35 @@ const CountStudents: FC<CountStudentsProps> = ({
     string
   >(`${Math.floor(educationGroupsItem.studentsNumber / 2)}`);
 
-  const addCountStudentFirstGroup = (count: string): void => {
-    setCountStudentFirstGroup(count)
+  const quantityStudentFirstGroup = (
+    e: ChangeEvent<HTMLInputElement>,
+  ): void => {
+    setCountStudentFirstGroup(e.target.value)
+    dispatch(countStudentGroups({ index: index, value: e.target.value,  numberColumn: 'firstColumn' }))
   };
+  const quantityStudentSecondGroup = (
+    e: ChangeEvent<HTMLInputElement>,
+  ): void => {
+    setCountStudentSecondGroup(e.target.value)
+    dispatch(countStudentGroups({ index: index, value: e.target.value,  numberColumn: 'secondColumn' }));
+  }
 
-  const addCountStudentSecondGroup = (count: string): void => {
-    setCountStudentSecondGroup(count)
-  };
+  useEffect(() => {
+    dispatch(
+      countStudentGroups({
+        index: index,
+        value: countStudentFirstGroup,
+        numberColumn: 'firstColumn',
+      }),
+    )
+    dispatch(
+      countStudentGroups({
+        index: index,
+        value: countStudentSecondGroup,
+        numberColumn: 'secondColumn',
+      }),
+    )
+  }, []);
 
   return (
     <Style.TableRow>
@@ -35,17 +65,15 @@ const CountStudents: FC<CountStudentsProps> = ({
         <Input
           type="text"
           value={countStudentFirstGroup}
-          onChange={(e) => addCountStudentFirstGroup(e.target.value)}
+          onChange={quantityStudentFirstGroup}
         />
       </Style.TableCeil>
-      {column && (
+      {isNewColumn && (
         <Style.TableCeil>
           <Input
             type="text"
             value={countStudentSecondGroup}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              addCountStudentSecondGroup(e.target.value)
-            }
+            onChange={quantityStudentSecondGroup}
           />
         </Style.TableCeil>
       )}

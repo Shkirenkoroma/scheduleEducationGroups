@@ -5,8 +5,8 @@ interface IPropsButton extends HTMLAttributes<HTMLButtonElement> {
   buttonName: string
 };
 
-export const Button: FC<IPropsButton> = ({ buttonName, onClick }): JSX.Element => {
-  return <Style.Button onClick={onClick}>{buttonName}</Style.Button>
+export const Button: FC<IPropsButton> = ({ buttonName, onClick, style }): JSX.Element => {
+  return <Style.Button onClick={onClick} style={style}>{buttonName}</Style.Button>
 };
 
 export default Button;

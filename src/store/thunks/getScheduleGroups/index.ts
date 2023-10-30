@@ -5,8 +5,11 @@ import { DataState } from 'src/store/types/types';
 export const getScheduleGroups = createAsyncThunk<DataState>(
   'education/getScheduleGroups',
   async () => {
-    const response = await axios.get('https://bgaa.by/test')
-
-    return response.data
+    try {
+      const response = await axios.get('https://bgaa.by/test')
+      return response.data
+    } catch (error) {
+      console.log(`Has occured something wrong like ${error}`)
+    }
   },
 );

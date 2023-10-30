@@ -1,34 +1,36 @@
-import { FC } from 'react';
+import { ChangeEvent, FC } from 'react';
+import { useAppDispatch, useAppSelector } from 'src/hooks';
+import { getNotation } from 'src/store/slice';
 import TextArea from 'src/UI/shared/textarea';
 import * as Style from './index.styles';
 
 interface NotationProps {
-  column:boolean
-};
+  index: number
+}
 
-const Notation: FC<NotationProps> = ({column}): JSX.Element => {
+const Notation: FC<NotationProps> = ({index}): JSX.Element => {
+  const isNewColumn = useAppSelector(
+    (state) => state.educationGroups?.formData[index]?.isNewColumn,
+  )
+  const dispatch = useAppDispatch()
+  const getInformationFromTextArea = (e:ChangeEvent<HTMLTextAreaElement>):void => {
+    dispatch(getNotation({index:index, value: e.target.value}))
+  }
+
   return (
     <Style.TableRow>
       <Style.TableCeil>
         Примечание <br /> (для составления расписания)
       </Style.TableCeil>
       <Style.TableCeil></Style.TableCeil>
-      <Style.TableCeil>
+      <Style.TableCeil colSpan={isNewColumn ? 45 : 13}>
         <TextArea
-          cols={23}
+          cols={isNewColumn ? 65 : 54}
           rows={2}
-          style={{ resize: 'none', outline: 'none' }}
-        ></TextArea>
+          style={{ resize: 'none', outline: 'none', margin: 7 }}
+          onChange={getInformationFromTextArea}
+        />
       </Style.TableCeil>
-      {column && (
-        <Style.TableCeil>
-          <TextArea
-            cols={23}
-            rows={2}
-            style={{ resize: 'none', outline: 'none' }}
-          ></TextArea>
-        </Style.TableCeil>
-      )}
     </Style.TableRow>
   )
 };

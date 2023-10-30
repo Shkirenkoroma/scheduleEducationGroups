@@ -10,8 +10,9 @@ export const TextArea: FC<IPropsTextArea> = ({
   cols,
   rows,
   style,
+  onChange,
 }): JSX.Element => {
-  return <Style.Textarea cols={cols} rows={rows} style={style}></Style.Textarea>
+  return <Style.Textarea cols={cols} rows={rows} style={style} onChange={onChange}/>
 };
 
 export default TextArea;
