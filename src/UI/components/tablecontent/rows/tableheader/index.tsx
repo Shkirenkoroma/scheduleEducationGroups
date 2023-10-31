@@ -1,33 +1,27 @@
-import { FC } from 'react'
-import { useAppDispatch, useAppSelector } from 'src/hooks'
-import { addColumn, deleteColumn } from 'src/store/slice/index'
-import { HiOutlinePlus } from 'react-icons/hi'
-import { MdDelete } from 'react-icons/md'
-import * as Style from './index.styles'
+import { FC } from 'react';
+import { useAppDispatch, useAppSelector } from 'src/hooks';
+import { setNewColumn } from 'src/store/slice/index';
+import { HiOutlinePlus } from 'react-icons/hi';
+import { MdDelete } from 'react-icons/md';
+import { useTableContext } from 'src/UI/components/schedulesGroup/scheduleGroupsItem/context';
+import * as S from './index.styles';
 
-interface TableHeaderProps {
-  index: number
-}
-
-const TableHeader: FC<TableHeaderProps> = ({ index }): JSX.Element => {
-  const dispatch = useAppDispatch()
+const TableHeader: FC = (): JSX.Element => {
+  const { tableNumber } = useTableContext();
+  const dispatch = useAppDispatch();
   const isNewColumn = useAppSelector(
-    (state) => state.educationGroups?.formData[index]?.isNewColumn,
-  )
+    (state) => state.educationGroups?.formData[tableNumber]?.isNewColumn,
+  );
 
-  const addColumnHandler = (): void => {
-    dispatch(addColumn({ index: index, value: true }))
-  }
-
-  const deleteColumnHandler = (): void => {
-    dispatch(deleteColumn({ index: index, value: false }))
-  }
+  const setColumnHandler = (isNewColumn: boolean): void => {
+    dispatch(setNewColumn({ tableNumber, isNewColumn }));
+  };
 
   return (
-    <Style.TableRow>
-      <Style.TableHead>Занятие</Style.TableHead>
-      <Style.TableHead>Часы</Style.TableHead>
-      <Style.TableHead
+    <S.TableRow>
+      <S.TableHead>Занятие</S.TableHead>
+      <S.TableHead>Часы</S.TableHead>
+      <S.TableHead
         style={{
           display: 'flex',
           justifyContent: 'center',
@@ -35,7 +29,7 @@ const TableHeader: FC<TableHeaderProps> = ({ index }): JSX.Element => {
           gap: 6,
         }}
       >
-        <Style.ContainerHead
+        <S.ContainerHead
           style={{
             display: 'flex',
             justifyContent: 'center',
@@ -46,15 +40,15 @@ const TableHeader: FC<TableHeaderProps> = ({ index }): JSX.Element => {
           {isNewColumn ? 'Подгруппа 1' : 'Преподаватель'}
           {!isNewColumn && (
             <HiOutlinePlus
-              onClick={addColumnHandler}
+              onClick={() => setColumnHandler(true)}
               style={{ cursor: 'pointer' }}
             />
           )}
-        </Style.ContainerHead>
-      </Style.TableHead>
+        </S.ContainerHead>
+      </S.TableHead>
       {isNewColumn && (
-        <Style.TableHead>
-          <Style.ContainerHead
+        <S.TableHead>
+          <S.ContainerHead
             style={{
               display: 'flex',
               justifyContent: 'center',
@@ -64,14 +58,14 @@ const TableHeader: FC<TableHeaderProps> = ({ index }): JSX.Element => {
           >
             Подгруппа 2
             <MdDelete
-              onClick={deleteColumnHandler}
+              onClick={() => setColumnHandler(false)}
               style={{ cursor: 'pointer' }}
             />
-          </Style.ContainerHead>
-        </Style.TableHead>
+          </S.ContainerHead>
+        </S.TableHead>
       )}
-    </Style.TableRow>
-  )
-}
+    </S.TableRow>
+  );
+};
 
-export default TableHeader
+export default TableHeader;

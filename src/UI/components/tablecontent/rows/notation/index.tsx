@@ -1,20 +1,19 @@
 import { ChangeEvent, FC } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/hooks';
-import { getNotation } from 'src/store/slice';
+import { setNotation } from 'src/store/slice';
+import { useTableContext } from 'src/UI/components/schedulesGroup/scheduleGroupsItem/context';
 import TextArea from 'src/UI/shared/textarea';
 import * as Style from './index.styles';
 
-interface NotationProps {
-  index: number
-}
-
-const Notation: FC<NotationProps> = ({index}): JSX.Element => {
+const Notation: FC = (): JSX.Element => {
+  const { tableNumber } = useTableContext();
+  const dispatch = useAppDispatch();
   const isNewColumn = useAppSelector(
-    (state) => state.educationGroups?.formData[index]?.isNewColumn,
-  )
-  const dispatch = useAppDispatch()
+    (state) => state.educationGroups?.formData[tableNumber]?.isNewColumn,
+  );
+  
   const getInformationFromTextArea = (e:ChangeEvent<HTMLTextAreaElement>):void => {
-    dispatch(getNotation({index:index, value: e.target.value}))
+    dispatch(setNotation({ tableNumber, value: e.target.value }));
   }
 
   return (

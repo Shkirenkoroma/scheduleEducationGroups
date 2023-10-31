@@ -1,40 +1,31 @@
-import { ChangeEvent, FC, useState } from 'react'
-import { useAppDispatch, useAppSelector } from 'src/hooks'
-import { dataTeachers } from 'src/store/selectors'
-import { readValue } from 'src/store/slice'
-import { DataGroup } from 'src/store/types/types'
-import Select from 'src/UI/shared/select'
-import * as Style from './index.styles'
+import { ChangeEvent, FC } from 'react';
+import { useAppDispatch, useAppSelector } from 'src/hooks';
+import { dataTeachers, getColumnData } from 'src/store/selectors';
+import { changeValue } from 'src/store/slice';
+import { useTableContext } from 'src/UI/components/schedulesGroup/scheduleGroupsItem/context';
+import Select from 'src/UI/shared/select';
+import * as Style from './index.styles';
 
-interface PracticProps {
-  educationGroupsItem: DataGroup
-  index: number
-}
+const Practic: FC = (): JSX.Element => {
+  const scheduleTeachers = useAppSelector(dataTeachers);
+  const { tableNumber } = useTableContext();
+  const dispatch = useAppDispatch();
 
-const Practic: FC<PracticProps> = ({
-  educationGroupsItem,
-  index,
-}): JSX.Element => {
-  const scheduleTeachers = useAppSelector(dataTeachers)
+  const firstColumnSelectValue = useAppSelector((state) =>
+    getColumnData(state, tableNumber, 'firstColumn', 'practic'),
+  );
+  
+  const secondColumnSelectValue = useAppSelector((state) =>
+    getColumnData(state, tableNumber, 'secondColumn', 'practic'),
+  );
+
+  const educationGroupsItem = useAppSelector(
+    (state) => state.educationGroups.data[tableNumber],
+  );
+  
   const isNewColumn = useAppSelector(
-    (state) => state.educationGroups?.formData[index]?.isNewColumn,
-  )
- 
-  const nameForAllEducation = useAppSelector(
-    (state) => state.educationGroups?.formData[index].firstColumn.nameForAll.value,
-  )
-
-  console.log('nameForAllEducation', nameForAllEducation)
-  const dispatch = useAppDispatch()
-  const [nameLector, setNameLector] = useState<string>('')
-  const [nameForAllExam, setNameForAllExam] = useState<string>('Вакансия')
-
-  const setTeacher = (valueOption: string): void => {
-    setNameLector(valueOption)
-  }
-
-  const defaultValueOption = { id: '0', name: nameForAllExam }
-  const editionDataTeachers = [defaultValueOption, ...scheduleTeachers]
+    (state) => state.educationGroups?.formData[tableNumber]?.isNewColumn,
+  );
 
   return (
     <Style.TableRow>
@@ -42,44 +33,42 @@ const Practic: FC<PracticProps> = ({
       <Style.TableCeil>{educationGroupsItem.practicHours}</Style.TableCeil>
       <Style.TableCeil>
         <Select
-        nameForAllEducation={nameForAllEducation}
-         index={index}
+          value={firstColumnSelectValue}
           onChange={(e: ChangeEvent<HTMLSelectElement>) =>
             dispatch(
-              readValue({
+              changeValue({
                 value: e.target.value,
                 key: 'practic',
-                index: index,
-                numberColumn: 'firstColumn',
+                tableNumber,
+                columnNumber: 'firstColumn',
               }),
             )
           }
-          editionDataTeachers={editionDataTeachers}
-          educationHours={educationGroupsItem.practicHours}
+          editionDataTeachers={scheduleTeachers}
+          disabled={!Number(educationGroupsItem.practicHours)}
         />
       </Style.TableCeil>
       {isNewColumn && (
         <Style.TableCeil>
           <Select
-          nameForAllEducation={nameForAllEducation}
-          index={index}
+            value={secondColumnSelectValue}
             onChange={(e: ChangeEvent<HTMLSelectElement>) =>
               dispatch(
-                readValue({
+                changeValue({
                   value: e.target.value,
                   key: 'practic',
-                  index: index,
-                  numberColumn: 'secondColumn',
+                  tableNumber,
+                  columnNumber: 'secondColumn',
                 }),
               )
             }
-            editionDataTeachers={editionDataTeachers}
-            educationHours={educationGroupsItem.practicHours}
+            editionDataTeachers={scheduleTeachers}
+            disabled={!Number(educationGroupsItem.practicHours)}
           />
         </Style.TableCeil>
       )}
     </Style.TableRow>
-  )
-}
+  );
+};
 
-export default Practic
+export default Practic;

@@ -28,7 +28,7 @@ export const EducationGroupDescriptionHeader = styled.div`
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 20px;
-  padding:10px;
+  padding: 10px;
   border-top: 2px solid #eaeaea;
   border-bottom: 2px solid #eaeaea;
 `;

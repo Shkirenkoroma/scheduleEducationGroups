@@ -1,44 +1,38 @@
-import { FC, ChangeEvent, useState } from 'react'
-import { FaSortAmountDown } from 'react-icons/fa'
-import { useAppDispatch, useAppSelector } from 'src/hooks'
-import { dataTeachers } from 'src/store/selectors'
-import { readValue, setNameForAllEducation } from 'src/store/slice'
-import { DataGroup } from 'src/store/types/types'
-import Select from 'src/UI/shared/select'
-import * as Style from './index.styles'
+import { FC, ChangeEvent } from 'react';
+import { FaSortAmountDown } from 'react-icons/fa';
+import { useAppDispatch, useAppSelector } from 'src/hooks';
+import { dataTeachers, getColumnData } from 'src/store/selectors';
+import { changeValue, applyTeachersSelects } from 'src/store/slice';
+import { useTableContext } from 'src/UI/components/schedulesGroup/scheduleGroupsItem/context';
+import Select from 'src/UI/shared/select';
+import * as Style from './index.styles';
 
-interface LectorsProps {
-  educationGroupsItem: DataGroup
-  index: number
-}
+const Lectors: FC = (): JSX.Element => {
+  const { tableNumber } = useTableContext();
+  const dispatch = useAppDispatch();
+  const scheduleTeachers = useAppSelector(dataTeachers);
 
-const Lectors: FC<LectorsProps> = ({
-  educationGroupsItem,
-  index,
-}): JSX.Element => {
+  const firstColumnSelectValue = useAppSelector((state) =>
+    getColumnData(state, tableNumber, 'firstColumn', 'lectors'),
+  );
+  
+  const secondColumnSelectValue = useAppSelector((state) =>
+    getColumnData(state, tableNumber, 'secondColumn', 'lectors'),
+  );
+
+  const educationGroupsItem = useAppSelector(
+    (state) => state.educationGroups.data[tableNumber],
+  );
+  
   const isNewColumn = useAppSelector(
-    (state) => state.educationGroups?.formData[index]?.isNewColumn,
-  )
-  const nameForAllEducation = useAppSelector(
-    (state) =>
-      state.educationGroups?.formData[index].firstColumn.nameForAll.value,
-  )
-  const scheduleTeachers = useAppSelector(dataTeachers)
-  const dispatch = useAppDispatch()
-  const [selectValue, setSelectValue] = useState<string>('')
+    (state) => state.educationGroups?.formData[tableNumber]?.isNewColumn,
+  );
 
-  const applyNameTeacherAllEducationGroup = (numberColumn: string): void => {
+  const applyNameTeacherAllEducationGroup = (columnNumber: string): void => {
     dispatch(
-      setNameForAllEducation({
-        value: selectValue,
-        index: index,
-        numberColumn: numberColumn,
-      }),
-    )
-  }
-
-  const defaultValueOption = { id: '0', name: 'Вакансия' }
-  const editionDataTeachers = [defaultValueOption, ...scheduleTeachers]
+      applyTeachersSelects({ tableNumber, columnNumber }),
+    );
+  };
 
   return (
     <Style.TableRow>
@@ -54,21 +48,19 @@ const Lectors: FC<LectorsProps> = ({
           }}
         >
           <Select
-          nameForAllEducation={nameForAllEducation}
-            index={index}
+            value={firstColumnSelectValue}
             onChange={(e: ChangeEvent<HTMLSelectElement>) => {
               dispatch(
-                readValue({
+                changeValue({
                   value: e.target.value,
                   key: 'lectors',
-                  index: index,
-                  numberColumn: 'firstColumn',
+                  tableNumber,
+                  columnNumber: 'firstColumn',
                 }),
-              )
-              setSelectValue(e.target.value)
+              );
             }}
-            editionDataTeachers={editionDataTeachers}
-            educationHours={educationGroupsItem.lecturesHours}
+            editionDataTeachers={scheduleTeachers}
+            disabled={!Number(educationGroupsItem.lecturesHours)}
           />
           <Style.ContainerIcon style={{ color: '#ffffff' }}>
             <FaSortAmountDown
@@ -95,20 +87,19 @@ const Lectors: FC<LectorsProps> = ({
             }}
           >
             <Select
-            nameForAllEducation={nameForAllEducation}
-              index={index}
+              value={secondColumnSelectValue}
               onChange={(e: ChangeEvent<HTMLSelectElement>) =>
                 dispatch(
-                  readValue({
+                  changeValue({
                     value: e.target.value,
                     key: 'lectors',
-                    index: index,
-                    numberColumn: 'secondColumn',
+                    tableNumber,
+                    columnNumber: 'secondColumn',
                   }),
                 )
               }
-              editionDataTeachers={editionDataTeachers}
-              educationHours={educationGroupsItem.lecturesHours}
+              editionDataTeachers={scheduleTeachers}
+              disabled={!Number(educationGroupsItem.lecturesHours)}
             />
             <Style.ContainerIcon style={{ color: '#ffffff' }}>
               <FaSortAmountDown
@@ -128,7 +119,7 @@ const Lectors: FC<LectorsProps> = ({
         </Style.TableCeil>
       )}
     </Style.TableRow>
-  )
-}
+  );
+};
 
-export default Lectors
+export default Lectors;

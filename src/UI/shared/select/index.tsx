@@ -1,36 +1,31 @@
-import { ChangeEvent, FC, HTMLAttributes } from 'react'
-import { useAppSelector } from 'src/hooks'
-import { DataTeacher } from 'src/store/types/types'
-import * as Style from './index.styles'
+import { ChangeEvent, FC, HTMLAttributes } from 'react';
+import { DataTeacher } from 'src/store/types/types';
+import * as S from './index.styles';
 
 interface SelectProps extends HTMLAttributes<HTMLSelectElement> {
-  editionDataTeachers: DataTeacher[]
-  onChange: (e: ChangeEvent<HTMLSelectElement>) => void
-  educationHours?: string
-  index: number
-  nameForAllEducation: string
-}
+  editionDataTeachers: DataTeacher[];
+  onChange: (e: ChangeEvent<HTMLSelectElement>) => void;
+  disabled?: boolean;
+  value?: string;
+};
 
 export const Select: FC<SelectProps> = ({
   onChange,
   editionDataTeachers,
-  educationHours,
-  index,
-  nameForAllEducation,
+  disabled,
+  value = editionDataTeachers[0].name,
 }): JSX.Element => {
+  const selectValue = disabled ? editionDataTeachers[0].name : value;
 
   return (
-    <Style.Select
-      onChange={onChange}
-      disabled={!Number(educationHours)}
-    >
+    <S.Select value={selectValue} onChange={onChange} disabled={disabled}>
       {editionDataTeachers.map((el: DataTeacher, index: number) => (
-        <Style.SelectOption value={el.name} key={index}>
+        <S.SelectOption value={el.name} key={index}>
           {el.name}
-        </Style.SelectOption>
+        </S.SelectOption>
       ))}
-    </Style.Select>
-  )
-}
+    </S.Select>
+  );
+};
 
-export default Select
+export default Select;

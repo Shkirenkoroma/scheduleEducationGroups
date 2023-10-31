@@ -1,60 +1,70 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/hooks';
-import { countStudentGroups } from 'src/store/slice';
-import { DataGroup } from 'src/store/types/types';
+import { setCountStudentGroups } from 'src/store/slice';
+import { useTableContext } from 'src/UI/components/schedulesGroup/scheduleGroupsItem/context';
 import { Input } from 'src/UI/shared/input';
 import * as Style from './index.styles';
 
-interface CountStudentsProps {
-  educationGroupsItem: DataGroup
-  index: number
-};
-
-const CountStudents: FC<CountStudentsProps> = ({
-  educationGroupsItem,
-  index,
-}): JSX.Element => {
-
+const CountStudents: FC = (): JSX.Element => {
+  const dispatch = useAppDispatch();
+  const { tableNumber } = useTableContext();
+  
+  const educationGroupsItem = useAppSelector(
+    (state) => state.educationGroups.data[tableNumber],
+  );
+  
   const isNewColumn = useAppSelector(
-    (state) => state.educationGroups?.formData[index]?.isNewColumn,
+    (state) => state.educationGroups?.formData[tableNumber]?.isNewColumn,
   );
 
-  const dispatch = useAppDispatch()
   const [countStudentFirstGroup, setCountStudentFirstGroup] = useState<string>(
     `${Math.ceil(educationGroupsItem.studentsNumber / 2)}`,
   );
-  const [countStudentSecondGroup, setCountStudentSecondGroup] = useState<
-    string
-  >(`${Math.floor(educationGroupsItem.studentsNumber / 2)}`);
+  
+  const [countStudentSecondGroup, setCountStudentSecondGroup] =
+    useState<string>(`${Math.floor(educationGroupsItem.studentsNumber / 2)}`);
 
   const quantityStudentFirstGroup = (
     e: ChangeEvent<HTMLInputElement>,
   ): void => {
-    setCountStudentFirstGroup(e.target.value)
-    dispatch(countStudentGroups({ index: index, value: e.target.value,  numberColumn: 'firstColumn' }))
+    setCountStudentFirstGroup(e.target.value);
+    dispatch(
+      setCountStudentGroups({
+        tableNumber,
+        value: e.target.value,
+        columnNumber: 'firstColumn',
+      }),
+    );
   };
+  
   const quantityStudentSecondGroup = (
     e: ChangeEvent<HTMLInputElement>,
   ): void => {
-    setCountStudentSecondGroup(e.target.value)
-    dispatch(countStudentGroups({ index: index, value: e.target.value,  numberColumn: 'secondColumn' }));
-  }
+    setCountStudentSecondGroup(e.target.value);
+    dispatch(
+      setCountStudentGroups({
+        tableNumber,
+        value: e.target.value,
+        columnNumber: 'secondColumn',
+      }),
+    );
+  };
 
   useEffect(() => {
     dispatch(
-      countStudentGroups({
-        index: index,
+      setCountStudentGroups({
+        tableNumber,
         value: countStudentFirstGroup,
-        numberColumn: 'firstColumn',
+        columnNumber: 'firstColumn',
       }),
-    )
+    );
     dispatch(
-      countStudentGroups({
-        index: index,
+      setCountStudentGroups({
+        tableNumber,
         value: countStudentSecondGroup,
-        numberColumn: 'secondColumn',
+        columnNumber: 'secondColumn',
       }),
-    )
+    );
   }, []);
 
   return (
@@ -78,6 +88,6 @@ const CountStudents: FC<CountStudentsProps> = ({
         </Style.TableCeil>
       )}
     </Style.TableRow>
-  )
-}
+  );
+};
 export default CountStudents;

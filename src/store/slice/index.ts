@@ -1,69 +1,44 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { getScheduleGroups } from '../thunks/getScheduleGroups'
-// import { sendDataStudentGroups } from '../thunks/sendDataStudentGroups'
-import { DataState } from '../types/types'
-
-const initialColumnData = {
-  lectors: '',
-  laboratory: '',
-  practic: '',
-  seminar: '',
-  offset: '',
-  exam: '',
-  countStudents: '',
-  notation: '',
-  nameForAll:'',
-}
-
-const intialTableData = {
-  firstColumn: initialColumnData,
-  secondColumn: initialColumnData,
-  isNewColumn: false,
-}
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {
+  defaultValueOption,
+  intialTableData,
+  teachersSelects,
+} from 'src/utils/consts';
+import { getScheduleGroups } from '../thunks/getScheduleGroups';
+import { DataState } from '../types/types';
 
 const initialState: DataState = {
   data: [],
   teachers: [],
-  formData: [intialTableData, intialTableData, intialTableData],
-}
+  formData: Array(3).fill(intialTableData),
+};
 
 export const educationGroupsSlice = createSlice({
   name: 'educationGroups',
   initialState,
   reducers: {
-    readValue: (state, action) => {
-      const index = action.payload.index
-      const numberColumn = action.payload.numberColumn
-      const key = action.payload.key
-      const value = action.payload.value
-      state.formData[index][numberColumn][key] = value
+    changeValue: (state, action) => {
+      const { tableNumber, columnNumber, key, value } = action.payload;
+      state.formData[tableNumber][columnNumber][key] = value;
     },
-    addColumn: (state, action) => {
-      const index = action.payload.index
-      const value = action.payload.value
-      state.formData[index].isNewColumn = value
+    setNewColumn: (state, action) => {
+      const { tableNumber, isNewColumn } = action.payload;
+      state.formData[tableNumber].isNewColumn = isNewColumn;
     },
-    deleteColumn: (state, action) => {
-      const index = action.payload.index
-      const value = action.payload.value
-      state.formData[index].isNewColumn = value
+    setNotation: (state, action) => {
+      const { value, tableNumber } = action.payload;
+      state.formData[tableNumber].notation = value;
     },
-    getNotation: (state, action) => {
-      const value = action.payload.value
-      const index = action.payload.index
-      state.formData[index].notation = value
+    setCountStudentGroups: (state, action) => {
+      const { tableNumber, columnNumber, value } = action.payload;
+      state.formData[tableNumber][columnNumber].countStudents = value;
     },
-    countStudentGroups: (state, action) => {
-      const value = action.payload.value
-      const numberColumn = action.payload.numberColumn
-      const index = action.payload.index
-      state.formData[index][numberColumn].countStudents = value
-    },
-    setNameForAllEducation: (state, action) => {
-      const numberColumn = action.payload.numberColumn
-      const tableNumber = action.payload.index
-      state.formData[tableNumber][numberColumn].nameForAll = action.payload
-      console.log('action.payload',action.payload)
+    applyTeachersSelects: (state, action) => {
+      const { tableNumber, columnNumber } = action.payload;
+      const formData = state.formData[tableNumber][columnNumber];
+      teachersSelects.forEach((teacher) => {
+      formData[teacher] = state.formData[tableNumber][columnNumber]['lectors'];
+      });
     },
   },
   extraReducers: {
@@ -71,18 +46,17 @@ export const educationGroupsSlice = createSlice({
       state: DataState,
       action: PayloadAction<DataState>,
     ) => {
-      state.data = action.payload.data
-      state.teachers = action.payload.teachers
+      state.data = action.payload.data;
+      state.teachers = [defaultValueOption, ...action.payload.teachers];
     },
   },
-})
+});
 
 export const {
-  readValue,
-  addColumn,
-  deleteColumn,
-  getNotation,
-  countStudentGroups,
-  setNameForAllEducation,
-} = educationGroupsSlice.actions
-export const scheduleGroupsReducer = educationGroupsSlice.reducer
+  changeValue,
+  setNewColumn,
+  setNotation,
+  setCountStudentGroups,
+  applyTeachersSelects,
+} = educationGroupsSlice.actions;
+export const scheduleGroupsReducer = educationGroupsSlice.reducer;

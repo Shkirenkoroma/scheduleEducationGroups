@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import { DataGroup } from 'src/store/types/types';
 import { useAppSelector } from 'src/hooks';
 import Lectors from '../rows/lectors';
 import Laboratory from '../rows/laboratory';
@@ -10,33 +9,33 @@ import Examen from '../rows/examen';
 import Offset from '../rows/offset';
 import CountStudents from '../rows/countstudents';
 import Notation from '../rows/notation';
+import { useTableContext } from '../../schedulesGroup/scheduleGroupsItem/context';
 import * as Style from './index.styles';
 
-interface TableProps {
-  educationGroupsItem: DataGroup
-  index:number
-};
-
-const Table: FC<TableProps> = ({ educationGroupsItem, index}): JSX.Element => {
+const Table: FC = (): JSX.Element => {
+  const { tableNumber } = useTableContext();
+  const educationGroupsItem = useAppSelector(
+    (state) => state.educationGroups.data[tableNumber],
+  );
   const isNewColumn = useAppSelector(
-    (state) => state.educationGroups?.formData[index]?.isNewColumn,
-  )
+    (state) => state.educationGroups?.formData[tableNumber]?.isNewColumn,
+  );
   
   return (
     <Style.Table>
       <Style.TableBody>
-        <TableHeader  index={index} />
-        <Lectors educationGroupsItem={educationGroupsItem} index={index} />
-        <Laboratory educationGroupsItem={educationGroupsItem} index={index} />
-        <Practic educationGroupsItem={educationGroupsItem} index={index} />
-        <Seminar educationGroupsItem={educationGroupsItem} index={index}/>
-        {educationGroupsItem.exam && <Examen index={index}/>}
-        {educationGroupsItem.offset && <Offset index={index}/>}
-        {isNewColumn && <CountStudents educationGroupsItem={educationGroupsItem} index={index} />}
-        <Notation index={index}/>
+        <TableHeader />
+        <Lectors />
+        <Laboratory />
+        <Practic />
+        <Seminar />
+        {educationGroupsItem.exam && <Examen />}
+        {educationGroupsItem.offset && <Offset />}
+        {isNewColumn && <CountStudents />}
+        <Notation />
       </Style.TableBody>
     </Style.Table>
-  )
-}
+  );
+};
 
 export default Table;

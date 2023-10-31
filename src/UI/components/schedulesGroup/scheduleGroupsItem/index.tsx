@@ -1,25 +1,21 @@
 import { FC } from 'react';
-import { DataGroup } from 'src/store/types/types';
-import Header from '../../header';
+import Header from '../header';
 import Table from '../../tablecontent/table';
+import { ScheduleGroupsItemProps } from './index.types';
+import { TableContext } from './context';
 import * as Style from './index.styles';
 
-interface PropsScheduleGroupItem {
-  educationGroupsItem: DataGroup
-  index: number
-};
-
-const ScheduleGroupsItem: FC<PropsScheduleGroupItem> = ({
-  educationGroupsItem,
-  index,
+const ScheduleGroupsItem: FC<ScheduleGroupsItemProps> = ({
+  tableNumber,
 }): JSX.Element => {
-
   return (
-    <Style.ScheduleGroupsContainerItemContainer>
-      <Header educationGroupsItem={educationGroupsItem} />
-      <Table educationGroupsItem={educationGroupsItem} index={index} />
-    </Style.ScheduleGroupsContainerItemContainer>
-  )
-}
+    <TableContext.Provider value={{ tableNumber }}>
+      <Style.ScheduleGroupsContainerItemContainer>
+        <Header />
+        <Table />
+      </Style.ScheduleGroupsContainerItemContainer>
+    </TableContext.Provider>
+  );
+};
 
 export default ScheduleGroupsItem;
