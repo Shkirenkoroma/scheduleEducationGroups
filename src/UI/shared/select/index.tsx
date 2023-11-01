@@ -19,8 +19,8 @@ export const Select: FC<SelectProps> = ({
 
   return (
     <S.Select value={selectValue} onChange={onChange} disabled={disabled}>
-      {editionDataTeachers.map((el: DataTeacher, index: number) => (
-        <S.SelectOption value={el.name} key={index}>
+      {editionDataTeachers.map((el: DataTeacher, id: number) => (
+        <S.SelectOption value={el.name} key={id}>
           {el.name}
         </S.SelectOption>
       ))}

@@ -1,5 +1,5 @@
 import { ChangeEvent, FC } from 'react';
-import * as Style from './index.styles';
+import * as S from './index.styles';
 
 interface InpurProps {
   type: string
@@ -12,5 +12,5 @@ export const Input: FC<InpurProps> = ({
   value,
   onChange,
 }): JSX.Element => {
-  return <Style.Input type={type} value={value} onChange={onChange} />
+  return <S.Input type={type} value={value} onChange={onChange} />
 };

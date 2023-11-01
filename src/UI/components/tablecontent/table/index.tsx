@@ -10,7 +10,7 @@ import Offset from '../rows/offset';
 import CountStudents from '../rows/countstudents';
 import Notation from '../rows/notation';
 import { useTableContext } from '../../schedulesGroup/scheduleGroupsItem/context';
-import * as Style from './index.styles';
+import * as S from './index.styles';
 
 const Table: FC = (): JSX.Element => {
   const { tableNumber } = useTableContext();
@@ -22,8 +22,8 @@ const Table: FC = (): JSX.Element => {
   );
   
   return (
-    <Style.Table>
-      <Style.TableBody>
+    <S.Table>
+      <S.TableBody>
         <TableHeader />
         <Lectors />
         <Laboratory />
@@ -33,8 +33,8 @@ const Table: FC = (): JSX.Element => {
         {educationGroupsItem.offset && <Offset />}
         {isNewColumn && <CountStudents />}
         <Notation />
-      </Style.TableBody>
-    </Style.Table>
+      </S.TableBody>
+    </S.Table>
   );
 };
 

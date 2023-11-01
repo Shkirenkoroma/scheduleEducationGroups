@@ -5,7 +5,7 @@ import { dataTeachers, getColumnData } from 'src/store/selectors';
 import { changeValue, applyTeachersSelects } from 'src/store/slice';
 import { useTableContext } from 'src/UI/components/schedulesGroup/scheduleGroupsItem/context';
 import Select from 'src/UI/shared/select';
-import * as Style from './index.styles';
+import * as S from './index.styles';
 
 const Lectors: FC = (): JSX.Element => {
   const { tableNumber } = useTableContext();
@@ -35,11 +35,11 @@ const Lectors: FC = (): JSX.Element => {
   };
 
   return (
-    <Style.TableRow>
-      <Style.TableCeil>Лекции</Style.TableCeil>
-      <Style.TableCeil>{educationGroupsItem.lecturesHours}</Style.TableCeil>
-      <Style.TableCeil>
-        <Style.ContainerHead
+    <S.TableRow>
+      <S.TableCeil>Лекции</S.TableCeil>
+      <S.TableCeil>{educationGroupsItem.lecturesHours}</S.TableCeil>
+      <S.TableCeil>
+        <S.ContainerHead
           style={{
             display: 'flex',
             alignItems: 'center',
@@ -62,7 +62,7 @@ const Lectors: FC = (): JSX.Element => {
             editionDataTeachers={scheduleTeachers}
             disabled={!Number(educationGroupsItem.lecturesHours)}
           />
-          <Style.ContainerIcon style={{ color: '#ffffff' }}>
+          <S.ContainerIcon style={{ color: '#ffffff' }}>
             <FaSortAmountDown
               onClick={() => applyNameTeacherAllEducationGroup('firstColumn')}
               style={{
@@ -73,12 +73,12 @@ const Lectors: FC = (): JSX.Element => {
                 marginLeft: 4,
               }}
             />
-          </Style.ContainerIcon>
-        </Style.ContainerHead>
-      </Style.TableCeil>
+          </S.ContainerIcon>
+        </S.ContainerHead>
+      </S.TableCeil>
       {isNewColumn && (
-        <Style.TableCeil>
-          <Style.ContainerHead
+        <S.TableCeil>
+          <S.ContainerHead
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -101,7 +101,7 @@ const Lectors: FC = (): JSX.Element => {
               editionDataTeachers={scheduleTeachers}
               disabled={!Number(educationGroupsItem.lecturesHours)}
             />
-            <Style.ContainerIcon style={{ color: '#ffffff' }}>
+            <S.ContainerIcon style={{ color: '#ffffff' }}>
               <FaSortAmountDown
                 onClick={() =>
                   applyNameTeacherAllEducationGroup('secondColumn')
@@ -114,11 +114,11 @@ const Lectors: FC = (): JSX.Element => {
                   borderRadius: 4,
                 }}
               />
-            </Style.ContainerIcon>
-          </Style.ContainerHead>
-        </Style.TableCeil>
+            </S.ContainerIcon>
+          </S.ContainerHead>
+        </S.TableCeil>
       )}
-    </Style.TableRow>
+    </S.TableRow>
   );
 };
 

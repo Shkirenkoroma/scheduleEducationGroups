@@ -1,13 +1,13 @@
 import { FC } from 'react';
-import * as Style from './App.styles';
 import ScheduleGroups from './UI/components/schedulesGroup';
+import * as S from './App.styles';
 
 const App: FC = (): JSX.Element => {
 
   return (
-    <Style.Container>
+    <S.Container>
       <ScheduleGroups />
-    </Style.Container>
+    </S.Container>
   )
 };
 

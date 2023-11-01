@@ -6,7 +6,7 @@ import { getScheduleGroups } from 'src/store/thunks/getScheduleGroups';
 import Button from 'src/UI/shared/button';
 import { DataGroup } from 'src/store/types/types';
 import ScheduleGroupsItem from './scheduleGroupsItem';
-import * as Style from './index.styles';
+import * as S from './index.styles';
 
 const ScheduleGroups: FC = (): JSX.Element => {
   const dataGroupStudents = useAppSelector(dataEducationGroups);
@@ -19,12 +19,12 @@ const ScheduleGroups: FC = (): JSX.Element => {
   }, []);
 
   return (
-    <Style.ScheduleGroupsContainer>
-      <Style.ScheduleGroupsContainerContent>
+    <S.ScheduleGroupsContainer>
+      <S.ScheduleGroupsContainerContent>
         {dataGroupStudents.map((_: DataGroup, index: number) => (
           <ScheduleGroupsItem key={index} tableNumber={index} />
         ))}
-      </Style.ScheduleGroupsContainerContent>
+      </S.ScheduleGroupsContainerContent>
       <Button
         style={{
           marginLeft: 30,
@@ -35,10 +35,10 @@ const ScheduleGroups: FC = (): JSX.Element => {
           color: '#ffffff',
           cursor: 'pointer',
         }}
-        onClick={() => dispatch(sendDataStudentGroups(array))}
+        onClick={() => dispatch(sendDataStudentGroups({array}))}
         buttonName="Сохранить"
       />
-    </Style.ScheduleGroupsContainer>
+    </S.ScheduleGroupsContainer>
   );
 };
 

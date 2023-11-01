@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from 'src/hooks';
 import { setCountStudentGroups } from 'src/store/slice';
 import { useTableContext } from 'src/UI/components/schedulesGroup/scheduleGroupsItem/context';
 import { Input } from 'src/UI/shared/input';
-import * as Style from './index.styles';
+import * as S from './index.styles';
 
 const CountStudents: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
@@ -68,26 +68,26 @@ const CountStudents: FC = (): JSX.Element => {
   }, []);
 
   return (
-    <Style.TableRow>
-      <Style.TableCeil>Количество человек</Style.TableCeil>
-      <Style.TableCeil></Style.TableCeil>
-      <Style.TableCeil>
+    <S.TableRow>
+      <S.TableCeil>Количество человек</S.TableCeil>
+      <S.TableCeil></S.TableCeil>
+      <S.TableCeil>
         <Input
           type="text"
           value={countStudentFirstGroup}
           onChange={quantityStudentFirstGroup}
         />
-      </Style.TableCeil>
+      </S.TableCeil>
       {isNewColumn && (
-        <Style.TableCeil>
+        <S.TableCeil>
           <Input
             type="text"
             value={countStudentSecondGroup}
             onChange={quantityStudentSecondGroup}
           />
-        </Style.TableCeil>
+        </S.TableCeil>
       )}
-    </Style.TableRow>
+    </S.TableRow>
   );
 };
 export default CountStudents;

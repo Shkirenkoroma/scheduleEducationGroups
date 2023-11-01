@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { DataGroup } from 'src/store/types/types';
 import { FaBookOpen } from 'react-icons/fa';
-import * as Style from './index.styles';
+import * as S from './index.styles';
 
 interface HeaderProps {
   educationGroupsItem: DataGroup
@@ -9,41 +9,41 @@ interface HeaderProps {
 
 const Header: FC<HeaderProps> = ({ educationGroupsItem }): JSX.Element => {
   return (
-    <Style.EducationGroupHeader>
-      <Style.EducationGroupNameHeader>
-        <Style.EducationGroupTitle>
-          <Style.EducationTitleName>
+    <S.EducationGroupHeader>
+      <S.EducationGroupNameHeader>
+        <S.EducationGroupTitle>
+          <S.EducationTitleName>
             <FaBookOpen /> {educationGroupsItem.subjectName}
-          </Style.EducationTitleName>
-        </Style.EducationGroupTitle>
-      </Style.EducationGroupNameHeader>
-      <Style.EducationGroupDescriptionHeader>
-        <Style.EducationGroupDescriptionItemHeader>
-          <Style.EducationGroupDescriptionItemName>
+          </S.EducationTitleName>
+        </S.EducationGroupTitle>
+      </S.EducationGroupNameHeader>
+      <S.EducationGroupDescriptionHeader>
+        <S.EducationGroupDescriptionItemHeader>
+          <S.EducationGroupDescriptionItemName>
             Группа
-          </Style.EducationGroupDescriptionItemName>
+          </S.EducationGroupDescriptionItemName>
           {educationGroupsItem.groupName}
-        </Style.EducationGroupDescriptionItemHeader>
-        <Style.EducationGroupDescriptionItemHeader>
-          <Style.EducationGroupDescriptionItemName>
+        </S.EducationGroupDescriptionItemHeader>
+        <S.EducationGroupDescriptionItemHeader>
+          <S.EducationGroupDescriptionItemName>
             Курс
-          </Style.EducationGroupDescriptionItemName>
+          </S.EducationGroupDescriptionItemName>
           {educationGroupsItem.course}
-        </Style.EducationGroupDescriptionItemHeader>
-        <Style.EducationGroupDescriptionItemHeader>
-          <Style.EducationGroupDescriptionItemName>
+        </S.EducationGroupDescriptionItemHeader>
+        <S.EducationGroupDescriptionItemHeader>
+          <S.EducationGroupDescriptionItemName>
             Количество курсантов
-          </Style.EducationGroupDescriptionItemName>
+          </S.EducationGroupDescriptionItemName>
           {educationGroupsItem.studentsNumber}
-        </Style.EducationGroupDescriptionItemHeader>
-        <Style.EducationGroupDescriptionItemHeader>
-          <Style.EducationGroupDescriptionItemName>
+        </S.EducationGroupDescriptionItemHeader>
+        <S.EducationGroupDescriptionItemHeader>
+          <S.EducationGroupDescriptionItemName>
             Семестр
-          </Style.EducationGroupDescriptionItemName>
+          </S.EducationGroupDescriptionItemName>
           {educationGroupsItem.semestr}
-        </Style.EducationGroupDescriptionItemHeader>
-      </Style.EducationGroupDescriptionHeader>
-    </Style.EducationGroupHeader>
+        </S.EducationGroupDescriptionItemHeader>
+      </S.EducationGroupDescriptionHeader>
+    </S.EducationGroupHeader>
   )
 };
 

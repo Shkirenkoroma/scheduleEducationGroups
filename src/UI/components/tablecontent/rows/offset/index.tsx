@@ -4,7 +4,7 @@ import { dataTeachers, getColumnData } from 'src/store/selectors';
 import { changeValue } from 'src/store/slice';
 import { useTableContext } from 'src/UI/components/schedulesGroup/scheduleGroupsItem/context';
 import Select from 'src/UI/shared/select';
-import * as Style from './index.styles';
+import * as S from './index.styles';
 
 const Offset: FC = (): JSX.Element => {
   const { tableNumber } = useTableContext();
@@ -24,10 +24,10 @@ const Offset: FC = (): JSX.Element => {
   );
 
   return (
-    <Style.TableRow>
-      <Style.TableCeil>Зачёт</Style.TableCeil>
-      <Style.TableCeil></Style.TableCeil>
-      <Style.TableCeil>
+    <S.TableRow>
+      <S.TableCeil>Зачёт</S.TableCeil>
+      <S.TableCeil></S.TableCeil>
+      <S.TableCeil>
         <Select
           value={firstColumnSelectValue}
           onChange={(e: ChangeEvent<HTMLSelectElement>) =>
@@ -42,9 +42,9 @@ const Offset: FC = (): JSX.Element => {
           }
           editionDataTeachers={scheduleTeachers}
         />
-      </Style.TableCeil>
+      </S.TableCeil>
       {isNewColumn && (
-        <Style.TableCeil>
+        <S.TableCeil>
           <Select
             value={secondColumnSelectValue}
             onChange={(e: ChangeEvent<HTMLSelectElement>) =>
@@ -59,9 +59,9 @@ const Offset: FC = (): JSX.Element => {
             }
             editionDataTeachers={scheduleTeachers}
           />
-        </Style.TableCeil>
+        </S.TableCeil>
       )}
-    </Style.TableRow>
+    </S.TableRow>
   );
 };
 

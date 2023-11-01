@@ -1,5 +1,5 @@
 import { FC, HTMLAttributes } from 'react';
-import * as Style from './index.styles';
+import * as S from './index.styles';
 
 interface IPropsTextArea extends HTMLAttributes<HTMLTextAreaElement> {
   cols: number
@@ -12,7 +12,7 @@ export const TextArea: FC<IPropsTextArea> = ({
   style,
   onChange,
 }): JSX.Element => {
-  return <Style.Textarea cols={cols} rows={rows} style={style} onChange={onChange}/>
+  return <S.Textarea cols={cols} rows={rows} style={style} onChange={onChange}/>
 };
 
 export default TextArea;

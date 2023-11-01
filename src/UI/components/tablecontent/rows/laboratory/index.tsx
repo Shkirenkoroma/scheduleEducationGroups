@@ -5,7 +5,7 @@ import { dataTeachers, getColumnData } from 'src/store/selectors';
 import { changeValue } from 'src/store/slice';
 import { useTableContext } from 'src/UI/components/schedulesGroup/scheduleGroupsItem/context';
 import Select from 'src/UI/shared/select';
-import * as Style from './index.styles';
+import * as S from './index.styles';
 
 const Laboratory: FC = (): JSX.Element => {
   const scheduleTeachers = useAppSelector(dataTeachers);
@@ -29,10 +29,10 @@ const Laboratory: FC = (): JSX.Element => {
   );
 
   return (
-    <Style.TableRow>
-      <Style.TableCeil>Лабораторные работы</Style.TableCeil>
-      <Style.TableCeil>{educationGroupsItem.laboratoryHours}</Style.TableCeil>
-      <Style.TableCeil>
+    <S.TableRow>
+      <S.TableCeil>Лабораторные работы</S.TableCeil>
+      <S.TableCeil>{educationGroupsItem.laboratoryHours}</S.TableCeil>
+      <S.TableCeil>
         <Select
           value={firstColumnSelectValue}
           onChange={(e: ChangeEvent<HTMLSelectElement>) =>
@@ -48,9 +48,9 @@ const Laboratory: FC = (): JSX.Element => {
           editionDataTeachers={scheduleTeachers}
           disabled={!Number(educationGroupsItem.laboratoryHours)}
         />
-      </Style.TableCeil>
+      </S.TableCeil>
       {isNewColumn && (
-        <Style.TableCeil>
+        <S.TableCeil>
           <Select
             value={secondColumnSelectValue}
             onChange={(e: ChangeEvent<HTMLSelectElement>) =>
@@ -66,9 +66,9 @@ const Laboratory: FC = (): JSX.Element => {
             editionDataTeachers={scheduleTeachers}
             disabled={!Number(educationGroupsItem.laboratoryHours)}
           />
-        </Style.TableCeil>
+        </S.TableCeil>
       )}
-    </Style.TableRow>
+    </S.TableRow>
   );
 };
 
