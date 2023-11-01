@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ScheduleGroupsContainer = styled.div`
   width: 100%;
-  max-width: 1800px;
+  max-width: 780px;
   min-height: 100vh;
   margin: 0 auto;
   border: 2px solid #000;
@@ -10,10 +10,11 @@ export const ScheduleGroupsContainer = styled.div`
 
 export const ScheduleGroupsContainerContent = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
   gap: 100px;
   width: 100%;
-  max-width: 1800px;
+  max-width: 765px;
   min-height: 100vh;
   margin: 0 auto;
   border: 2px solid #000;

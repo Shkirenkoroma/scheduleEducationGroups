@@ -12,7 +12,6 @@ const ScheduleGroups: FC = (): JSX.Element => {
   const dataGroupStudents = useAppSelector(dataEducationGroups);
   const dataFormField = useAppSelector(getDataForm);
   const dispatch = useAppDispatch();
-  const array = Array.from(dataFormField);
 
   useEffect(() => {
     dispatch(getScheduleGroups());
@@ -35,7 +34,7 @@ const ScheduleGroups: FC = (): JSX.Element => {
           color: '#ffffff',
           cursor: 'pointer',
         }}
-        onClick={() => dispatch(sendDataStudentGroups({array}))}
+        onClick={() => dispatch(sendDataStudentGroups(dataFormField))}
         buttonName="Сохранить"
       />
     </S.ScheduleGroupsContainer>
