@@ -4,12 +4,12 @@ export interface DataGroup {
   course: string
   studentsNumber: number
   semestr: string
-  lecturesHours:string
-  laboratoryHours:string
-  practicHours:string
-  seminarHours:string
-  exam:boolean
-  offset:boolean
+  lecturesHours: string
+  laboratoryHours: string
+  practicHours: string
+  seminarHours: string
+  exam: boolean
+  offset: boolean
 };
 
 export interface DataTeacher {
@@ -20,7 +20,7 @@ export interface DataTeacher {
 export interface DataState {
   data: DataGroup[]
   teachers: DataTeacher[]
-  formData:any
+  formData: any
 };
 
 export interface PropertiesStateEducationGroup {

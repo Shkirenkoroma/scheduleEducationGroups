@@ -39,14 +39,7 @@ const Lectors: FC = (): JSX.Element => {
       <S.TableCeil>Лекции</S.TableCeil>
       <S.TableCeil>{educationGroupsItem.lecturesHours}</S.TableCeil>
       <S.TableCeil>
-        <S.ContainerHead
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: 10,
-          }}
-        >
+        <S.ContainerHead>
           <Select
             value={firstColumnSelectValue}
             onChange={(e: ChangeEvent<HTMLSelectElement>) => {
@@ -62,7 +55,7 @@ const Lectors: FC = (): JSX.Element => {
             editionDataTeachers={scheduleTeachers}
             disabled={!Number(educationGroupsItem.lecturesHours)}
           />
-          <S.ContainerIcon style={{ color: '#ffffff' }}>
+          <S.ContainerIcon >
             <FaSortAmountDown
               onClick={() => applyNameTeacherAllEducationGroup('firstColumn')}
               style={{
@@ -78,14 +71,7 @@ const Lectors: FC = (): JSX.Element => {
       </S.TableCeil>
       {isNewColumn && (
         <S.TableCeil>
-          <S.ContainerHead
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              padding: 10,
-            }}
-          >
+          <S.ContainerHead>
             <Select
               value={secondColumnSelectValue}
               onChange={(e: ChangeEvent<HTMLSelectElement>) =>
@@ -101,7 +87,7 @@ const Lectors: FC = (): JSX.Element => {
               editionDataTeachers={scheduleTeachers}
               disabled={!Number(educationGroupsItem.lecturesHours)}
             />
-            <S.ContainerIcon style={{ color: '#ffffff' }}>
+            <S.ContainerIcon>
               <FaSortAmountDown
                 onClick={() =>
                   applyNameTeacherAllEducationGroup('secondColumn')

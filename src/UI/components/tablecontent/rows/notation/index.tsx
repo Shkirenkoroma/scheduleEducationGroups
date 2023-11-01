@@ -26,7 +26,6 @@ const Notation: FC = (): JSX.Element => {
         <TextArea
           cols={isNewColumn ? 65 : 54}
           rows={2}
-          style={{ resize: 'none', outline: 'none', margin: 7 }}
           onChange={getInformationFromTextArea}
         />
       </S.TableCeil>

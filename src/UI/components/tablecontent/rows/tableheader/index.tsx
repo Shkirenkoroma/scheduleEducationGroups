@@ -21,22 +21,8 @@ const TableHeader: FC = (): JSX.Element => {
     <S.TableRow>
       <S.TableHead>Занятие</S.TableHead>
       <S.TableHead>Часы</S.TableHead>
-      <S.TableHead
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'end',
-          gap: 6,
-        }}
-      >
-        <S.ContainerHead
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'end',
-            gap: 6,
-          }}
-        >
+      <S.TableHead>
+        <S.ContainerHead>
           {isNewColumn ? 'Подгруппа 1' : 'Преподаватель'}
           {!isNewColumn && (
             <HiOutlinePlus
@@ -48,14 +34,7 @@ const TableHeader: FC = (): JSX.Element => {
       </S.TableHead>
       {isNewColumn && (
         <S.TableHead>
-          <S.ContainerHead
-            style={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'end',
-              gap: 6,
-            }}
-          >
+          <S.ContainerHead>
             Подгруппа 2
             <MdDelete
               onClick={() => setColumnHandler(false)}

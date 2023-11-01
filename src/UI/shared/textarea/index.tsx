@@ -9,10 +9,9 @@ interface IPropsTextArea extends HTMLAttributes<HTMLTextAreaElement> {
 export const TextArea: FC<IPropsTextArea> = ({
   cols,
   rows,
-  style,
   onChange,
 }): JSX.Element => {
-  return <S.Textarea cols={cols} rows={rows} style={style} onChange={onChange}/>
+  return <S.Textarea cols={cols} rows={rows}  onChange={onChange}/>
 };
 
 export default TextArea;

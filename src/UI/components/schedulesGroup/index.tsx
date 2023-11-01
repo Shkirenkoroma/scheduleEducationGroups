@@ -25,15 +25,6 @@ const ScheduleGroups: FC = (): JSX.Element => {
         ))}
       </S.ScheduleGroupsContainerContent>
       <Button
-        style={{
-          marginLeft: 30,
-          backgroundColor: '#198754',
-          border: 'none',
-          padding: 10,
-          borderRadius: 3,
-          color: '#ffffff',
-          cursor: 'pointer',
-        }}
         onClick={() => dispatch(sendDataStudentGroups(dataFormField))}
         buttonName="Сохранить"
       />

@@ -9,4 +9,9 @@ export const TableRow = styled.tr`
   border-bottom: 2px solid #59667c;
 `;
 
-export const ContainerHead = styled.div``;
+export const ContainerHead = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  gap: 6px;
+`;
