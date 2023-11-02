@@ -21,7 +21,10 @@ export const EducationTitleName = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
-`;
+  
+    @media(max-width:480px){
+      font-size: 12px;
+}`;
 
 export const EducationGroupDescriptionHeader = styled.div`
   display: flex;
@@ -42,4 +45,8 @@ export const EducationGroupDescriptionItemHeader = styled.div`
 export const EducationGroupDescriptionItemName = styled.span`
   font-weight: 900;
   color: #3c4b64;
+
+    @media(max-width:768px){
+      font-size:12px;
+  }
 `;

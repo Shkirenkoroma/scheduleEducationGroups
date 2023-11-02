@@ -5,6 +5,14 @@ export const TableRow = styled.tr``;
 export const TableCeil = styled.td`
   border: 1px solid #eaeaea;
   text-align: center;
+
+    @media (max-width: 768px) {
+      font-size: 12px;
+  }
+ 
+    @media (max-width: 480px) {
+      padding: 0;
+}
 `;
 
 export const ContainerHead = styled.div`

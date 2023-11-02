@@ -6,4 +6,7 @@ export const TableCeil = styled.td`
   padding: 10px;
   border: 1px solid #eaeaea;
   text-align: center;
-  `;
+  
+    @media(max-width:480px){
+      font-size: 12px;
+}`;

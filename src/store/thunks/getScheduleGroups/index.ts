@@ -9,7 +9,7 @@ export const getScheduleGroups = createAsyncThunk<DataState>(
       const response = await axios.get('https://bgaa.by/test')
       return response.data
     } catch (error) {
-      console.log(`Has occured something wrong like ${error}`)
+      console.log(`Something has occured wrong ${error}`)
     }
   },
 );

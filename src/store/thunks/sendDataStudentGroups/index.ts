@@ -1,17 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 import { DataState } from 'src/store/types/types';
+import axios from 'axios';
 
 export const sendDataStudentGroups = createAsyncThunk<DataState, any>(
-  'education/getScheduleGroups',
-  async ( {dataFormField} ) => {
+  'education/sendDataStudentGroups',
+  async (dataFormField) => {
     try {
-      const response = await axios.post('https://bgaa.by/test_result', {
+      const response = await axios.post(
+        'https://bgaa.by/test_result',
         dataFormField,
-      })
+      )
       return response.data
     } catch (error) {
-      console.log(`Has occured something wrong like ${error}`)
+      console.log(`Something has occured wrong ${error}`)
     }
   },
 );

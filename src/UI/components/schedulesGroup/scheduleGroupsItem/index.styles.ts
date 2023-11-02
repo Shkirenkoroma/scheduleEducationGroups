@@ -4,7 +4,7 @@ export const ScheduleGroupsContainerItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: 685px;
+  max-width: 725px;
   height: 100%;
   min-height: 630px;
   margin: 20px 20px;

@@ -4,7 +4,7 @@ import { FaBookOpen } from 'react-icons/fa';
 import * as S from './index.styles';
 
 interface HeaderProps {
-  educationGroupsItem: DataGroup
+  educationGroupsItem: DataGroup;
 };
 
 const Header: FC<HeaderProps> = ({ educationGroupsItem }): JSX.Element => {
@@ -24,10 +24,7 @@ const Header: FC<HeaderProps> = ({ educationGroupsItem }): JSX.Element => {
           </S.EducationGroupDescriptionItemName>
           {educationGroupsItem.groupName}
         </S.EducationGroupDescriptionItemHeader>
-        <S.EducationGroupDescriptionItemHeader>
-          <S.EducationGroupDescriptionItemName>
-            Курс
-          </S.EducationGroupDescriptionItemName>
+        <S.EducationGroupDescriptionItemHeader>        
           {educationGroupsItem.course}
         </S.EducationGroupDescriptionItemHeader>
         <S.EducationGroupDescriptionItemHeader>

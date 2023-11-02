@@ -14,7 +14,7 @@ const Notation: FC = (): JSX.Element => {
   
   const getInformationFromTextArea = (e:ChangeEvent<HTMLTextAreaElement>):void => {
     dispatch(setNotation({ tableNumber, value: e.target.value }));
-  }
+  };
 
   return (
     <S.TableRow>

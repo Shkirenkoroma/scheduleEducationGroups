@@ -5,7 +5,6 @@ export const ScheduleGroupsContainer = styled.div`
   max-width: 780px;
   min-height: 100vh;
   margin: 0 auto;
-  border: 2px solid #000;
 `;
 
 export const ScheduleGroupsContainerContent = styled.div`
@@ -17,5 +16,4 @@ export const ScheduleGroupsContainerContent = styled.div`
   max-width: 765px;
   min-height: 100vh;
   margin: 0 auto;
-  border: 2px solid #000;
 `;

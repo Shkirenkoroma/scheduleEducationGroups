@@ -2,8 +2,8 @@ import { FC, HTMLAttributes } from 'react';
 import * as S from './index.styles';
 
 interface IPropsTextArea extends HTMLAttributes<HTMLTextAreaElement> {
-  cols: number
-  rows: number
+  cols: number;
+  rows: number;
 };
 
 export const TextArea: FC<IPropsTextArea> = ({

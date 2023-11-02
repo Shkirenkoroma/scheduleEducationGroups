@@ -9,7 +9,10 @@ export const dataEducationGroups = (state: PropertiesStateEducationGroup) =>
 export const getDataForm = (state: PropertiesStateEducationGroup) =>
   state.educationGroups.formData;
 
-export const getColumnData = (
+export const loading = (state: PropertiesStateEducationGroup) =>
+  state.educationGroups.isLoading;
+
+export const getColumnData =  (
   state: PropertiesStateEducationGroup,
   tableNum: number,
   colKey: string,

@@ -42,4 +42,8 @@ export const EducationGroupDescriptionItemHeader = styled.div`
 export const EducationGroupDescriptionItemName = styled.span`
   font-weight: 900;
   color: #3c4b64;
+  
+    @media(max-width: 768px) {
+      fonst-size: 24px;
+  }
 `;

@@ -2,7 +2,7 @@ import { FC, HTMLAttributes } from 'react';
 import * as S from './index.styles';
 
 interface IPropsButton extends HTMLAttributes<HTMLButtonElement> {
-  buttonName: string
+  buttonName: string;
 };
 
 export const Button: FC<IPropsButton> = ({ buttonName, onClick, style }): JSX.Element => {
