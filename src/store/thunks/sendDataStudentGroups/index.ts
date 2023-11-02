@@ -2,10 +2,6 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { $api } from 'src/api/axios';
 import { DataState, TableData } from 'src/store/types/types';
 
-interface I {
-  formaData: TableData
-}
-
 export const sendDataStudentGroups = createAsyncThunk<DataState, TableData[]>(
   'education/sendDataStudentGroups',
   async ( formaData ) => {
