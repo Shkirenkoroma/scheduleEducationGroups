@@ -3,6 +3,7 @@ import { FaSortAmountDown } from 'react-icons/fa';
 import { useAppDispatch, useAppSelector } from 'src/hooks';
 import { dataTeachers, getColumnData } from 'src/store/selectors';
 import { changeValue, applyTeachersSelects } from 'src/store/slice';
+import { ColumnNumber } from 'src/store/types/types';
 import { useTableContext } from 'src/UI/components/schedulesGroup/scheduleGroupsItem/context';
 import Select from 'src/UI/shared/select';
 import * as S from './index.styles';
@@ -13,11 +14,11 @@ const Lectors: FC = (): JSX.Element => {
   const scheduleTeachers = useAppSelector(dataTeachers);
 
   const firstColumnSelectValue = useAppSelector((state) =>
-    getColumnData(state, tableNumber, 'firstColumn', 'lectors'),
+    getColumnData(state, tableNumber, ColumnNumber.firstColumn, 'lectors'),
   );
   
   const secondColumnSelectValue = useAppSelector((state) =>
-    getColumnData(state, tableNumber, 'secondColumn', 'lectors'),
+    getColumnData(state, tableNumber, ColumnNumber.secondColumn, 'lectors'),
   );
 
   const educationGroupsItem = useAppSelector(
@@ -28,7 +29,7 @@ const Lectors: FC = (): JSX.Element => {
     (state) => state.educationGroups?.formData[tableNumber]?.isNewColumn,
   );
 
-  const applyNameTeacherAllEducationGroup = (columnNumber: string): void => {
+  const applyNameTeacherAllEducationGroup = (columnNumber: ColumnNumber): void => {
     dispatch(
       applyTeachersSelects({ tableNumber, columnNumber }),
     );
@@ -48,7 +49,7 @@ const Lectors: FC = (): JSX.Element => {
                   value: e.target.value,
                   key: 'lectors',
                   tableNumber,
-                  columnNumber: 'firstColumn',
+                  columnNumber: ColumnNumber.firstColumn,
                 }),
               );
             }}
@@ -57,7 +58,7 @@ const Lectors: FC = (): JSX.Element => {
           />
           <S.ContainerIcon >
             <FaSortAmountDown
-              onClick={() => applyNameTeacherAllEducationGroup('firstColumn')}
+              onClick={() => applyNameTeacherAllEducationGroup(ColumnNumber.firstColumn)}
               style={{
                 cursor: 'pointer',
                 padding: 10,
@@ -80,7 +81,7 @@ const Lectors: FC = (): JSX.Element => {
                     value: e.target.value,
                     key: 'lectors',
                     tableNumber,
-                    columnNumber: 'secondColumn',
+                    columnNumber: ColumnNumber.secondColumn,
                   }),
                 )
               }
@@ -90,7 +91,7 @@ const Lectors: FC = (): JSX.Element => {
             <S.ContainerIcon>
               <FaSortAmountDown
                 onClick={() =>
-                  applyNameTeacherAllEducationGroup('secondColumn')
+                  applyNameTeacherAllEducationGroup(ColumnNumber.secondColumn)
                 }
                 style={{
                   cursor: 'pointer',

@@ -1,6 +1,7 @@
 import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/hooks';
 import { setCountStudentGroups } from 'src/store/slice';
+import { ColumnNumber } from 'src/store/types/types';
 import { useTableContext } from 'src/UI/components/schedulesGroup/scheduleGroupsItem/context';
 import { Input } from 'src/UI/shared/input';
 import * as S from './index.styles';
@@ -32,7 +33,7 @@ const CountStudents: FC = (): JSX.Element => {
       setCountStudentGroups({
         tableNumber,
         value: e.target.value,
-        columnNumber: 'firstColumn',
+        columnNumber: ColumnNumber.firstColumn,
       }),
     );
   };
@@ -45,7 +46,7 @@ const CountStudents: FC = (): JSX.Element => {
       setCountStudentGroups({
         tableNumber,
         value: e.target.value,
-        columnNumber: 'secondColumn',
+        columnNumber: ColumnNumber.secondColumn,
       }),
     );
   };
@@ -55,14 +56,14 @@ const CountStudents: FC = (): JSX.Element => {
       setCountStudentGroups({
         tableNumber,
         value: countStudentFirstGroup,
-        columnNumber: 'firstColumn',
+        columnNumber: ColumnNumber.firstColumn,
       }),
     );
     dispatch(
       setCountStudentGroups({
         tableNumber,
         value: countStudentSecondGroup,
-        columnNumber: 'secondColumn',
+        columnNumber: ColumnNumber.secondColumn,
       }),
     );
   }, []);

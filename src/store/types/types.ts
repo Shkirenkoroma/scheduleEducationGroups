@@ -1,3 +1,7 @@
+export interface StateSchema {
+  educationGroups: DataState;
+}
+
 export interface DataGroup {
   subjectName: string;
   groupName: string;
@@ -20,11 +24,41 @@ export interface DataTeacher {
 export interface DataState {
   data: DataGroup[];
   teachers: DataTeacher[];
-  formData: any;
+  formData: TableData[];
   isLoading: boolean;
   error: string;
 };
 
-export interface PropertiesStateEducationGroup {
-  educationGroups: DataState;
+export type ColumnDataKey = keyof ColumnData;
+
+export enum ColumnNumber {
+  firstColumn = 'firstColumn',
+  secondColumn = 'secondColumn',
+};
+
+export interface ColumnData {
+  lectors: string;
+  laboratory: string;
+  practic: string;
+  seminar: string;
+  offset: string;
+  exam: string;
+  countStudents: string;
+  notation: string;
+  nameForAll: string;
+};
+
+export interface TableData {
+  [ColumnNumber.firstColumn]: ColumnData;
+  [ColumnNumber.secondColumn]: ColumnData;
+  isNewColumn: boolean;
+  notation: string;
+};
+
+export interface TablePayload {
+  tableNumber: number;
+  columnNumber?: ColumnNumber;
+  key?: ColumnDataKey;
+  value?: string;
+  isNewColumn?: boolean;
 };

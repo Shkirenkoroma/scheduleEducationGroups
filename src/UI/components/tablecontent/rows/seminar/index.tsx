@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useAppSelector } from 'src/hooks';
 import { dataTeachers, getColumnData } from 'src/store/selectors';
 import { changeValue } from 'src/store/slice';
+import { ColumnNumber } from 'src/store/types/types';
 import { useTableContext } from 'src/UI/components/schedulesGroup/scheduleGroupsItem/context';
 import Select from 'src/UI/shared/select';
 import * as S from './index.styles';
@@ -13,16 +14,17 @@ export const Seminar: FC = (): JSX.Element => {
   const scheduleTeachers = useAppSelector(dataTeachers);
 
   const firstColumnSelectValue = useAppSelector((state) =>
-    getColumnData(state, tableNumber, 'firstColumn', 'seminar'),
+    getColumnData(state, tableNumber, ColumnNumber.firstColumn, 'seminar'),
   );
   
   const secondColumnSelectValue = useAppSelector((state) =>
-    getColumnData(state, tableNumber, 'secondColumn', 'seminar'),
+    getColumnData(state, tableNumber, ColumnNumber.secondColumn, 'seminar'),
   );
 
   const educationGroupsItem = useAppSelector(
     (state) => state.educationGroups.data[tableNumber],
   );
+  
   const isNewColumn = useAppSelector(
     (state) => state.educationGroups?.formData[tableNumber]?.isNewColumn,
   );
@@ -40,7 +42,7 @@ export const Seminar: FC = (): JSX.Element => {
                 value: e.target.value,
                 key: 'seminar',
                 tableNumber,
-                columnNumber: 'firstColumn',
+                columnNumber: ColumnNumber.firstColumn,
               }),
             )
           }
@@ -58,7 +60,7 @@ export const Seminar: FC = (): JSX.Element => {
                   value: e.target.value,
                   key: 'seminar',
                   tableNumber,
-                  columnNumber: 'secondColumn',
+                  columnNumber: ColumnNumber.secondColumn,
                 }),
               )
             }

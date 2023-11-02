@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import {
   defaultValueOption,
   intialTableData,
@@ -6,7 +6,7 @@ import {
 } from 'src/utils/consts';
 import { getScheduleGroups } from '../thunks/getScheduleGroups';
 import { sendDataStudentGroups } from '../thunks/sendDataStudentGroups';
-import { DataState } from '../types/types';
+import { DataState, TablePayload } from '../types/types';
 
 const initialState: DataState = {
   data: [],
@@ -20,27 +20,31 @@ export const educationGroupsSlice = createSlice({
   name: 'educationGroups',
   initialState,
   reducers: {
-    changeValue: (state, action) => {
-      const { tableNumber, columnNumber, key, value } = action.payload
-      state.formData[tableNumber][columnNumber][key] = value
+    changeValue: (state, { payload }: PayloadAction<TablePayload>) => {
+      const { tableNumber, columnNumber, key, value } = payload
+      state.formData[tableNumber][columnNumber!][key!] = value!
     },
-    setNewColumn: (state, action) => {
-      const { tableNumber, isNewColumn } = action.payload
-      state.formData[tableNumber].isNewColumn = isNewColumn
+    setNewColumn: (state, { payload }: PayloadAction<TablePayload>) => {
+      const { tableNumber, isNewColumn } = payload
+      state.formData[tableNumber].isNewColumn = isNewColumn!
     },
-    setNotation: (state, action) => {
-      const { value, tableNumber } = action.payload
-      state.formData[tableNumber].notation = value
+    setNotation: (state, { payload }: PayloadAction<TablePayload>) => {
+      const { value, tableNumber } = payload
+      state.formData[tableNumber].notation = value!
     },
-    setCountStudentGroups: (state, action) => {
-      const { tableNumber, columnNumber, value } = action.payload
-      state.formData[tableNumber][columnNumber].countStudents = value
+    setCountStudentGroups: (
+      state,
+      { payload }: PayloadAction<TablePayload>,
+    ) => {
+      const { tableNumber, columnNumber, value } = payload
+      state.formData[tableNumber][columnNumber!].countStudents = value!
     },
-    applyTeachersSelects: (state, action) => {
-      const { tableNumber, columnNumber } = action.payload
-      const formData = state.formData[tableNumber][columnNumber]
+    applyTeachersSelects: (state, { payload }: PayloadAction<TablePayload>) => {
+      const { tableNumber, columnNumber } = payload
+      const formData = state.formData[tableNumber][columnNumber!]
       teachersSelects.forEach((teacher) => {
-        formData[teacher] = state.formData[tableNumber][columnNumber]['lectors']
+        formData[teacher] =
+          state.formData[tableNumber][columnNumber!]['lectors']
       })
     },
   },

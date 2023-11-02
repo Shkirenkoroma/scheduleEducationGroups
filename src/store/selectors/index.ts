@@ -1,20 +1,19 @@
-import { PropertiesStateEducationGroup } from '../types/types';
+import { StateSchema, ColumnNumber, ColumnDataKey } from '../types/types';
 
-export const dataTeachers = (state: PropertiesStateEducationGroup) =>
+export const dataTeachers = (state: StateSchema) =>
   state.educationGroups.teachers;
 
-export const dataEducationGroups = (state: PropertiesStateEducationGroup) =>
+export const dataEducationGroups = (state: StateSchema) =>
   state.educationGroups.data;
 
-export const getDataForm = (state: PropertiesStateEducationGroup) =>
+export const getDataForm = (state: StateSchema) =>
   state.educationGroups.formData;
 
-export const loading = (state: PropertiesStateEducationGroup) =>
-  state.educationGroups.isLoading;
+export const loading = (state: StateSchema) => state.educationGroups.isLoading;
 
-export const getColumnData =  (
-  state: PropertiesStateEducationGroup,
+export const getColumnData = (
+  state: StateSchema,
   tableNum: number,
-  colKey: string,
-  objKey: string,
+  colKey: ColumnNumber,
+  objKey: ColumnDataKey,
 ) => state.educationGroups.formData[tableNum][colKey][objKey];

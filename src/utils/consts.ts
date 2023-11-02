@@ -1,4 +1,6 @@
-export const teachersSelects = [
+import { ColumnData } from 'src/store/types/types';
+
+export const teachersSelects: (keyof ColumnData)[] = [
   'lectors',
   'laboratory',
   'practic',
@@ -7,7 +9,7 @@ export const teachersSelects = [
   'exam',
 ];
 
-const initialColumnData = {
+const initialColumnData: ColumnData = {
   lectors: '',
   laboratory: '',
   practic: '',

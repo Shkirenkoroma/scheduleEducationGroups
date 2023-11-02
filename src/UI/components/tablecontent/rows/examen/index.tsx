@@ -2,6 +2,7 @@ import { ChangeEvent, FC } from 'react';
 import { useAppDispatch, useAppSelector } from 'src/hooks';
 import { dataTeachers, getColumnData } from 'src/store/selectors';
 import { changeValue } from 'src/store/slice';
+import { ColumnNumber } from 'src/store/types/types';
 import { useTableContext } from 'src/UI/components/schedulesGroup/scheduleGroupsItem/context';
 import Select from 'src/UI/shared/select';
 import * as S from './index.styles';
@@ -12,11 +13,11 @@ const Examen: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
    const firstColumnSelectValue = useAppSelector((state) =>
-     getColumnData(state, tableNumber, 'firstColumn', 'exam'),
+     getColumnData(state, tableNumber, ColumnNumber.firstColumn, 'exam'),
    );
    
    const secondColumnSelectValue = useAppSelector((state) =>
-     getColumnData(state, tableNumber, 'secondColumn', 'exam'),
+     getColumnData(state, tableNumber, ColumnNumber.secondColumn, 'exam'),
    );
    
   const isNewColumn = useAppSelector(
@@ -36,7 +37,7 @@ const Examen: FC = (): JSX.Element => {
                 value: e.target.value,
                 key: 'exam',
                 tableNumber,
-                columnNumber: 'firstColumn',
+                columnNumber: ColumnNumber.firstColumn,
               }),
             )
           }
@@ -53,7 +54,7 @@ const Examen: FC = (): JSX.Element => {
                   value: e.target.value,
                   key: 'exam',
                   tableNumber,
-                  columnNumber: 'secondColumn',
+                  columnNumber: ColumnNumber.secondColumn,
                 }),
               )
             }

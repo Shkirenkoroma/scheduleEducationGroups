@@ -1,18 +1,19 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { DataState } from 'src/store/types/types';
-import axios from 'axios';
+import { $api } from 'src/api/axios';
+import { DataState, TableData } from 'src/store/types/types';
 
-export const sendDataStudentGroups = createAsyncThunk<DataState, any>(
+interface I {
+  formaData: TableData
+}
+
+export const sendDataStudentGroups = createAsyncThunk<DataState, TableData[]>(
   'education/sendDataStudentGroups',
-  async (dataFormField) => {
+  async ( formaData ) => {
     try {
-      const response = await axios.post(
-        'https://bgaa.by/test_result',
-        dataFormField,
-      )
+      const response = await $api.post('test_result',  formaData)
       return response.data
     } catch (error) {
-      console.log(`Something has occured wrong ${error}`)
+      console.log(`Has occured something wrong like ${error}`)
     }
   },
 );

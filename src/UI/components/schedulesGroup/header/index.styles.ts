@@ -47,6 +47,6 @@ export const EducationGroupDescriptionItemName = styled.span`
   color: #3c4b64;
 
     @media(max-width:768px){
-      font-size:12px;
+      font-size: 12px;
   }
 `;
